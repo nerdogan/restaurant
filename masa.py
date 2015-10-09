@@ -16,7 +16,7 @@ con = fdb.connect(
 cur=con.cursor()
 selectt="SELECT plu_no,urun_adi,adet,tutar,masa_no,n_05 FROM DATA WHERE  plu_no<1000"
 
-selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,tah_kod FROM YEDEK_RAPOR WHERE TARIH='03.10.2015' and plu_no<1000  "
+selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,tah_kod FROM YEDEK_RAPOR WHERE TARIH='09.10.2015' and plu_no<1000  "
 
 slectaylik="""select
   c.d_adi,
@@ -85,4 +85,4 @@ def yenile():
 
 while True:
     yenile()
-    time.sleep(5)
+    time.sleep(10)

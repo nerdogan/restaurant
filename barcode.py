@@ -6,6 +6,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
 from reportlab.graphics import renderPDF
+import os
 
 #----------------------------------------------------------------------
 def createBarCodes():
@@ -14,7 +15,7 @@ def createBarCodes():
     """
     c = canvas.Canvas("barcodes.pdf", pagesize=A4)
 
-    barcode_value = "76651"
+    barcode_value = "286853"
 
 
     # code93 also has an Extended and MultiWidth version
@@ -42,3 +43,4 @@ def createBarCodes():
 
 if __name__ == "__main__":
     createBarCodes()
+    os.startfile("barcodes.pdf")
