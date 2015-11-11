@@ -6,7 +6,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
 from reportlab.graphics import renderPDF
-import os
+import subprocess
 
 #----------------------------------------------------------------------
 def createBarCodes():
@@ -15,7 +15,12 @@ def createBarCodes():
     """
     c = canvas.Canvas("barcodes.pdf", pagesize=A4)
 
-    barcode_value = "286853"
+    res=subprocess.Popen(['zenity','--entry','--text','Fatura No Giriniz'], stdout=subprocess.PIPE)
+    usertext=str(res.communicate()[0][:-1])
+    barcode_value=usertext[0:-1]
+
+
+
 
 
     # code93 also has an Extended and MultiWidth version
@@ -41,6 +46,11 @@ def createBarCodes():
 
     c.save()
 
+
+
+    if barcode_value!="":
+        print "yok bisey"
+        subprocess.call (['C:\\Program Files (x86)\\Ghostgum\\gsview\\gsprint.exe','barcodes.pdf'])
+
 if __name__ == "__main__":
     createBarCodes()
-    os.startfile("barcodes.pdf")

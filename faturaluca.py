@@ -72,6 +72,8 @@ def OK(self):
 
 
     mainWindow.lineEdit_2.setText(str(sonuc[0][0])+"   "+cc+"   "+bb)
+    mainWindow.lineEdit.selectAll()
+
 
 
 

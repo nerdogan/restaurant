@@ -8,8 +8,11 @@ rem *** Used to create a Python exe
 rem ***** get rid of all the old files in the build folder
 rd /S /Q build
 
+zenity --entry --title="nn" --text="gir"   || GOTO :elma
 rem ***** create the exe
 python setup.py py2exe --includes sip
-C:\Users\NAMIK\PycharmProjects\restaurant\dist\nenra.exe
+:elma
+zenity --question --text="Barcode.exe çalýþtýrýlsýn mý ?"   || GOTO :EOF
+C:\Users\NAMIK\PycharmProjects\restaurant\dist\barcode.exe
 rem **** pause so we can see the exit codes
 rem pause "done...hit a key to exit"
