@@ -56,18 +56,23 @@ def createBarCodes():
     c.setFont("Helvetica", 30)
     c.drawString(x+90,y-15,str(b))
     c.setFont("Helvetica", 21)
-    c.drawString(x+190,y+35,"SAYIM BAR 31/10/2015")
+    c.drawString(x+190,y+35,"SAYIM BAR 31/12/2015")
     c.setFont("Helvetica", 12)
     y = y - 20 * mm
+    orhan=0
 
     for code in sonuc:
         if b!=code[2]:
+            if orhan!=0:
+                c.showPage()
+                y = 280* mm
             y = y - 20 * mm
             c.setFont("Helvetica", 30)
             c.drawString(x+90,y+35,str(code[2]))
             c.setFont("Helvetica", 12)
 
         b=code[2]
+        orhan=orhan+1
         print code[0],code[1]
         barcode93 = code93.Standard93(code[0])
         barcode93.drawOn(c, x, y+10)

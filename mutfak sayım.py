@@ -19,7 +19,7 @@ class Mmdb():
         self.cur = self.conn.cursor()
     def cek(self,tablename):
         # extract all the data
-        sql = "select Stok_Kodu , Adi_1,Ozel_Kodu3 from %s where Ozel_Kodu1='HAMMADDE' AND Ozel_Kodu2='MUTFAK' AND Ozel_Kodu15!='PASIF' order by Ozel_Kodu3 " % tablename
+        sql = "select Stok_Kodu , Adi_1,Ozel_Kodu3 from %s where Ozel_Kodu1='HAMMADDE' AND Ozel_Kodu2='MUTFAK' AND Ozel_Kodu15!='PASIF' order by Adi_1 " % tablename
         self.cur.execute(sql)
         # show the result
         self.result = self.cur.fetchall()
@@ -56,17 +56,11 @@ def createBarCodes():
     c.setFont("Helvetica", 30)
     c.drawString(x+90,y-15,str(b))
     c.setFont("Helvetica", 21)
-    c.drawString(x+190,y+35,"SAYIM MUTFAK 31/10/2015")
+    c.drawString(x+190,y+35,"SAYIM MUTFAK 31/12/2015")
     c.setFont("Helvetica", 12)
     y = y - 20 * mm
 
     for code in sonuc:
-        if b!=code[2]:
-            y = y - 20 * mm
-            c.setFont("Helvetica", 30)
-            c.drawString(x+90,y+35,str(code[2]))
-            c.setFont("Helvetica", 12)
-
         b=code[2]
         print code[0],code[1]
         barcode93 = code93.Standard93(code[0])

@@ -7,10 +7,10 @@ setup(
     name = 'NENrest',
     description = 'Restaurant Automotion',
     version = '1.3.1',
-	windows=[{ 'script':'barcode.py','icon_resources': [(0, 'nenra.ico')] }],
+	windows=[{ 'script':'masa.py','icon_resources': [(0, 'nenra.ico')] }],
 	options={
     'py2exe': {
-    'packages' : ['PyQt4','adodbapi','reportlab',
+    'packages' : ['PyQt4','adodbapi','reportlab','PIL.Image','PIL.PdfImagePlugin',
     'reportlab.graphics.charts',
     'reportlab.graphics.samples',
     'reportlab.graphics.widgets',
@@ -25,7 +25,7 @@ setup(
     'bundle_files': 1
     }
     },
-data_files = [
+data_files = [ 'C:\\Python27\\tcl\\tcl8.5\\init.tcl',
             ('phonon_backend',  [ r'C:\Python27\Lib\site-packages\PyQt4\plugins\phonon_backend\phonon_ds94.dll' ]),
             ('datalar', [r'C:\Users\NAMIK\PycharmProjects\restaurant\STOK.pdf']),
             ('imageformats', [ 'C:\\Python27\\Lib\\site-packages\\PyQt4\\plugins\\imageformats\\qico4.dll' ])

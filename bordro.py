@@ -7,10 +7,10 @@ from openpyxl.compat import range
 
 
 wb = Workbook()
-dest_filename = 'empty_book.xlsx'
+dest_filename = 'empty_book2.xlsx'
 
 
-wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\ASAS BORDRO EYLÜL.xlsx', read_only=True)
+wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\bordrokasým.xlsx', read_only=True)
 ws = wb1['Sayfa1']
 aa=0
 ab=0
@@ -22,7 +22,7 @@ for row in ws.rows:
         break
     print "   "
     for cell in row:
-        if (ab > 11) and (ab%3==0) and (ac==0 or ac==3 or  ac==21):
+        if (ab > 11) and (ab%3==0) and (ac==0 or ac==3 or  ac==20):
             if cell.value==None:
                 ab=99999
             data.append(cell.value)
@@ -32,9 +32,9 @@ for row in ws.rows:
         ac=ac+1
 
 
+print len(data)
 
-
-ws3 = wb.create_sheet(title="Data")
+ws3 = wb.create_sheet(title="Data12")
 for row in range(len(data)/3):
     for col in range(1,2):
         ws3.cell(column=col, row=row+1, value="%s" % data[aa])
@@ -49,5 +49,5 @@ for row in range(len(data)/3):
 
         aa=aa+1
 
-print(ws3['A2'].value)
+
 wb.save(filename = dest_filename)

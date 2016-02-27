@@ -26,7 +26,7 @@ def createBarCodes():
     # code93 also has an Extended and MultiWidth version
 
 
-    x = 180 * mm
+    x = 160 * mm
     y = 290 * mm
     x1 = 6.4 * mm
 
