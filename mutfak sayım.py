@@ -56,7 +56,7 @@ def createBarCodes():
     c.setFont("Helvetica", 30)
     c.drawString(x+90,y-15,str(b))
     c.setFont("Helvetica", 21)
-    c.drawString(x+190,y+35,"SAYIM MUTFAK 31/12/2015")
+    c.drawString(x+190,y+35,"SAYIM MUTFAK 29/02/2016")
     c.setFont("Helvetica", 12)
     y = y - 20 * mm
 

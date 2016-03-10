@@ -1,3 +1,4 @@
+# -*- coding:utf8 -*-
 __author__ = 'NAMIK'
 from reportlab.graphics.barcode import code39, code128, code93
 from reportlab.graphics.barcode import eanbc, qr, usps
@@ -7,7 +8,8 @@ from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
 from reportlab.graphics import renderPDF
 import subprocess
-
+import sys
+reload(sys)
 #----------------------------------------------------------------------
 def createBarCodes():
     """
@@ -26,13 +28,15 @@ def createBarCodes():
     # code93 also has an Extended and MultiWidth version
 
 
-    x = 160 * mm
-    y = 290 * mm
+    x = 70 * mm
+    y = 250 * mm
     x1 = 6.4 * mm
 
     code93.Standard93(barcode_value).drawOn(c, x, y)
-
-
+    c.drawString(x-150, y-20,"TANYEL YILMAZ")
+    c.drawString(x-130, y-60,"Yeşilköy İstanbul")
+    c.drawString(x-110, y-80,"TANYEL YILMAZ")
+    c.drawString(x-160, y-110,"Bakırköy V.D  - 9770108372")
 
 
     # draw a QR code
