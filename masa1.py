@@ -10,7 +10,7 @@ print tgtIP
 conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8')
 curmy = conmy.cursor()
 con = fdb.connect(
-    dsn='192.168.2.251:D:\RESTO_2015\DATA\DATABASE.GDB',
+    dsn='192.168.2.250:D:\RESTO_2015\DATA\DATABASE.GDB',
     user='sysdba', password='masterkey',
 
     charset='UTF8' # specify a character set for the connection #
@@ -44,7 +44,7 @@ while True:
     dt=datetime.now()-timedelta(hours=5)
     interval_type = 'days'
     interval_num = interval_num+1
-    if interval_num==3:
+    if interval_num==4:
         break
     one_day = timedelta(**{interval_type: interval_num})
     dt2=dt-one_day

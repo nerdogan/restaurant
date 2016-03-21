@@ -78,7 +78,7 @@ def yenile():
 
 
 
-    print " "
+    print "--------------------------------------------------------------------------------- "
     """   ab=0
     aa=cur.execute(slectaylik )
     print "AYLIK DAGILIM "
@@ -91,31 +91,33 @@ def yenile():
 
 
 while True:
-    dt=datetime.now()-timedelta(hours=5)
-    t=dt.timetuple()
-    tt1=str(t[2])+"."+str(t[1])+"."+str(t[0])
-    tt2=str(t[0])+"-"+str(t[1])+"-"+str(t[2])
-    tgtIP = gethostbyname('bishop')
-    print tgtIP
-    conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8')
-    curmy = conmy.cursor()
-    con = fdb.connect(
-    dsn='192.168.2.251:D:\RESTO_2015\DATA\DATABASE.GDB',
-    user='sysdba', password='masterkey',
+    try:
+        dt=datetime.now()-timedelta(hours=5)
+        t=dt.timetuple()
+        tt1=str(t[2])+"."+str(t[1])+"."+str(t[0])
+        tt2=str(t[0])+"-"+str(t[1])+"-"+str(t[2])
+        tgtIP = gethostbyname('bishop')
+        print tgtIP
+        conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8')
+        curmy = conmy.cursor()
+        con = fdb.connect(
+            dsn='192.168.2.250:D:\RESTO_2015\DATA\DATABASE.GDB',
+            user='sysdba', password='masterkey',
+            charset='UTF8' # specify a character set for the connection #
+        )
+        cur=con.cursor()
+        yenile()
+        ttim.sleep(60)
+        conmy.commit()
+        strt="delete from ciro where tarih='"+tt2+"' "
+        tt3=tt2
+        curmy.execute(strt)
+        son=curmy.execute("select max(id) from ciro")
+        son1="ALTER TABLE ciro AUTO_INCREMENT ="+str(son)
+        curmy.execute(son1)
+        conmy.commit()
+        conmy.close()
+    except:
+        ttim.sleep(60)
+        pass
 
-    charset='UTF8' # specify a character set for the connection #
-     )
-    cur=con.cursor()
-
-    yenile()
-    ttim.sleep(60)
-
-    conmy.commit()
-    strt="delete from ciro where tarih='"+tt2+"' "
-    tt3=tt2
-    curmy.execute(strt)
-    son=curmy.execute("select max(id) from ciro")
-    son1="ALTER TABLE ciro AUTO_INCREMENT ="+str(son)
-    curmy.execute(son1)
-    conmy.commit()
-    conmy.close()
