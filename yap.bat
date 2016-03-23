@@ -11,7 +11,7 @@ rd /S /Q build
 zenity --entry --title="nn" --text="gir"   || GOTO :elma
 rem ***** create the exe
 python setup.py py2exe --includes sip
-:elmya
+:elma
 zenity --question --text="Barcode.exe �al��t�r�ls�n m� ?"   || GOTO :EOF
 C:\Users\NAMIK\PycharmProjects\restaurant\dist\barcode.exe
 rem **** pause so we can see the exit codes
