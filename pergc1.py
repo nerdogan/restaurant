@@ -4,6 +4,7 @@ from datetime import datetime,timedelta
 import time as ttim
 import smtplib
 from socket import *
+import subprocess
 import sys
 reload(sys)
 
@@ -47,6 +48,8 @@ def yenile():
     ab="0"
     curmy.execute(selectt)
     aa=curmy.fetchall()
+    if len(aa)==0:
+        print   "Yeni giriş çıkış yok"
 
 
     for row in aa:
@@ -56,11 +59,12 @@ def yenile():
 
         bodyy="\n\n"+a3+" tarihinde saat "+a2+" personelimiz "+a1+" giriş-çıkış yapmıştır. \n\nBilgilerinize\n NAMIK ERDOĞAN"
         send_email('erdogannamik@gmail.com','qazxcv654152','orhangunendii@gmail.com','personel giriş çıkış bilgilendirme',bodyy)
-        curmy.execute("update personelgc SET mail='1' " )
+
         print row[0],row[1],row[2]
 
 
-    conmy.commit()
+    curmy.execute("update personelgc SET mail='1' " )
+
 
 
 
@@ -75,6 +79,12 @@ def yenile():
     print "toplam       :",ab """
 
 while True:
+
+    subprocess.Popen('python persatt.py')
+    ttim.sleep(10)
     yenile()
-    ttim.sleep(300)
     conmy.commit()
+    print "_______________________________________________________________"
+    ttim.sleep(300)
+
+

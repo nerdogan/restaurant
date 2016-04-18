@@ -14,7 +14,7 @@ class Mmdb():
 
 
         # connect to the database
-        self.conn = pymssql.connect("WINSERVER","sa","QaZ147WsX","MYSYS_2015")
+        self.conn = pymssql.connect("SERVERPC","sa","QaZ123WsX","RESTO_2016")
         # create a cursor
         self.cur = self.conn.cursor()
     def cek(self,tablename):
@@ -56,7 +56,7 @@ def createBarCodes():
     c.setFont("Helvetica", 30)
     c.drawString(x+90,y-15,str(b))
     c.setFont("Helvetica", 21)
-    c.drawString(x+190,y+35,"SAYIM BAR 29/02/2016")
+    c.drawString(x+190,y+35,"SAYIM BAR 31/03/2016")
     c.setFont("Helvetica", 12)
     y = y - 20 * mm
     orhan=0

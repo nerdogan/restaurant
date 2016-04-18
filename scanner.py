@@ -10,7 +10,7 @@ reload(sys)
 
 
 sm = twain.SourceManager(0)
-ss = sm.OpenSource('WIA-Brother MFC-1910W series [38b 1.0(32-32)')
+ss = sm.OpenSource()
 ss.RequestAcquire(1,1)
 if hasattr(ss, 'ModalLoop'):
     ss.ModalLoop()
