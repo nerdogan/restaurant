@@ -27,6 +27,8 @@ if ret == True:
 
 
     attendance = zk.getAttendance()
+    print len(attendance)
+
     print "Giriü áçkçü listesi:"
 
     if ( attendance ):

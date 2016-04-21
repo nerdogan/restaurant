@@ -1,5 +1,5 @@
 # -*- coding:utf8 -*-
-__author__ = 'NAMIK'
+__author__ = 'NAMIK ERDOĞAN'
 import subprocess
 import twain
 import PIL.Image as Image

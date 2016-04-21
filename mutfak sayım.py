@@ -14,7 +14,7 @@ class Mmdb():
 
 
         # connect to the database
-        self.conn = pymssql.connect("WINSERVER","sa","QaZ147WsX","MYSYS_2015")
+        self.conn = pymssql.connect("192.168.2.251pıp","sa","QaZ123WsX","MYSYS_2015")
         # create a cursor
         self.cur = self.conn.cursor()
     def cek(self,tablename):
@@ -56,7 +56,7 @@ def createBarCodes():
     c.setFont("Helvetica", 30)
     c.drawString(x+90,y-15,str(b))
     c.setFont("Helvetica", 21)
-    c.drawString(x+190,y+35,"SAYIM MUTFAK 29/02/2016")
+    c.drawString(x+190,y+35,"SAYIM MUTFAK 31/03/2016")
     c.setFont("Helvetica", 12)
     y = y - 20 * mm
 
@@ -75,7 +75,7 @@ def createBarCodes():
 
 
     # draw a QR code
-    qr_code = qr.QrCodeWidget('http://78.188.173.248/masa.php')
+    qr_code = qr.QrCodeWidget('http://nen.duckdns.org:8080/masa.php')
     bounds = qr_code.getBounds()
     width = bounds[2] - bounds[0]
     height = bounds[3] - bounds[1]
