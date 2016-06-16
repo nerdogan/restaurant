@@ -7,8 +7,13 @@ from socket import *
 import subprocess
 import sys
 reload(sys)
-from instapush import Instapush,App
-app=App(appid='5716c8375659e3a956080a46',secret='ae9a83ef6a5ffbc976309d9cc3f911f6')
+from pushetta import Pushetta
+
+API_KEY = "58fee02c2e20ed7511b179af994fc34850f84656"
+CHANNEL_NAME = "attendance"
+p = Pushetta(API_KEY)
+
+
 
 
 def send_email(user, pwd, recipient, subject, body):
@@ -62,9 +67,10 @@ def yenile():
 
         bodyy="\n\n"+a3+" tarihinde saat "+a2+" personelimiz "+a1+" giriş-çıkış yapmıştır. \n\nBilgilerinize\n NAMIK ERDOĞAN"
         send_email('erdogannamik@gmail.com','qazxcv654152','orhangunendii@gmail.com','personel giriş çıkış bilgilendirme',bodyy)
-        appnot={'isim':a1,'tarih':a3,'gir':'giris','saat':a2}
+        appnot=a3+" tarihinde saat "+a2+" personelimiz "+a1+" giriş yapmıştır"
 
-        app.notify(event_name='Gec',trackers=appnot)
+        #app.notify(event_name='Gec',trackers=appnot)
+        p.pushMessage(CHANNEL_NAME, appnot)
         print row[0],row[1],row[2]
 
 
