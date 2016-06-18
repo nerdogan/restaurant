@@ -8,7 +8,7 @@ import subprocess
 import sys
 reload(sys)
 from pushetta import Pushetta
-
+sys.setdefaultencoding('utf8')
 API_KEY = "58fee02c2e20ed7511b179af994fc34850f84656"
 CHANNEL_NAME = "attendance"
 p = Pushetta(API_KEY)
