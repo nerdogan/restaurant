@@ -96,9 +96,9 @@ while True:
         t=dt.timetuple()
         tt1=str(t[2])+"."+str(t[1])+"."+str(t[0])
         tt2=str(t[0])+"-"+str(t[1])+"-"+str(t[2])
-        tgtIP = gethostbyname('bishop')
+        tgtIP = gethostbyname('nen.duckdns.org')
         print tgtIP
-        conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8')
+        conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8',port=30000)
         curmy = conmy.cursor()
         con = fdb.connect(
             dsn='192.168.2.251:D:\RESTO_2015\DATA\DATABASE.GDB',

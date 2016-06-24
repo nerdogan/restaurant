@@ -21,15 +21,13 @@ setup(
     'reportlab.pdfgen',
     'reportlab.platypus'],
     'includes':['sip','MySQLdb'],
-    'dll_excludes': [''],
+    'dll_excludes': ['msvcp90.dll','msvcr90.dll'],
     'bundle_files': 1
     }
     },
 data_files = [ 'C:\\Python27\\tcl\\tcl8.5\\init.tcl',
             ('phonon_backend',  [ r'C:\Python27\Lib\site-packages\PyQt4\plugins\phonon_backend\phonon_ds94.dll' ]),
-            ('datalar', [r'C:\Users\NAMIK\PycharmProjects\restaurant\STOK.pdf']),
-            ('imageformats', [ 'C:\\Python27\\Lib\\site-packages\\PyQt4\\plugins\\imageformats\\qico4.dll' ])
-            ]
+                        ]
     )
 
 

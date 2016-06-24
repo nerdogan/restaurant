@@ -40,11 +40,12 @@ def send_email(user, pwd, recipient, subject, body):
     except:
         print "failed to send mail"
 
-tgtIP = gethostbyname('bishop')
+tgtIP = gethostbyname('nen.duckdns.org')
 print tgtIP
-conmy = mdb.connect(tgtIP, "nen","654152", "bishop",charset='utf8')
+conmy = mdb.connect(tgtIP, "nen","654152", "bishop",charset='utf8',port=30000)
 curmy = conmy.cursor()
-
+curmy.execute("SET NAMES UTF8")
+curmy.execute("SET character_set_client=utf8")
 
 sys.setdefaultencoding('utf8')
 
@@ -67,7 +68,7 @@ def yenile():
 
         bodyy="\n\n"+a3+" tarihinde saat "+a2+" personelimiz "+a1+" giriş-çıkış yapmıştır. \n\nBilgilerinize\n NAMIK ERDOĞAN"
         send_email('erdogannamik@gmail.com','qazxcv654152','orhangunendii@gmail.com','personel giriş çıkış bilgilendirme',bodyy)
-        appnot=a3+" tarihinde saat "+a2+" personelimiz "+a1+" giriş yapmıştır"
+        appnot=a3+u" tarihinde saat "+a2+u" personelimiz "+a1+u" giriş yapmıştır"
 
         #app.notify(event_name='Gec',trackers=appnot)
         p.pushMessage(CHANNEL_NAME, appnot)

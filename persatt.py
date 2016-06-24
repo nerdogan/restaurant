@@ -1,4 +1,4 @@
-# -*- coding:cp857 -*-
+# -*- coding: utf8 -*-
 __author__ = 'NAMIK'
 import sys
 reload(sys)
@@ -10,18 +10,20 @@ import zkconst
 import MySQLdb as mdb
 from socket import *
 
-tgtIP = gethostbyname('bishop')
+tgtIP = gethostbyname('nen.duckdns.org')
 print tgtIP
-conmy = mdb.connect(tgtIP, "nen","654152", "bishop",charset='utf8')
+conmy = mdb.connect(tgtIP, "nen","654152", "bishop",charset='utf8',port=30000)
 curmy = conmy.cursor()
+curmy.execute("SET NAMES UTF8")
+curmy.execute("SET character_set_client=utf8")
 
 zk = zklib1.ZKLib("192.168.2.224", 4370)
 
 ret = zk.connect()
-print "Ba§lant:", ret
+print "BaÄŸlantÄ±:", ret
 
 if ret == True:
-    print "Cihaz DevredŸ", zk.disableDevice()
+    print "Cihaz DevredÄ±ÅŸÄ±", zk.disableDevice()
 
 
 
@@ -29,7 +31,7 @@ if ret == True:
     attendance = zk.getAttendance()
     print len(attendance)
 
-    print "GiriŸ ‡kŸ listesi:"
+    print "GiriÅŸ Ã§Ä±kÄ±ÅŸ listesi:"
 
     if ( attendance ):
         for lattendance in attendance:
@@ -54,4 +56,4 @@ if ret == True:
 
     print "Cihaz Devrede", zk.enableDevice()
 
-    print "Ba§lant kesildi.", zk.disconnect()
+    print "BaÄŸlantÄ± kesildi.", zk.disconnect()
