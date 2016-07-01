@@ -24,7 +24,7 @@ class Mmdb():
     def cek(self,tablename):
         # extract all the data
        # sql = "select Stok_Kodu , Adi_1,Ozel_Kodu3 from %s where Ozel_Kodu1='HAMMADDE' AND Ozel_Kodu2='BAR' AND Ozel_Kodu15!='PASIF' order by Ozel_Kodu3 " % tablename
-        sql="select hamkod , hamad , bolum from %s where departman='BAR' order by bolum " % tablename
+        sql="select hamkod , hamad , bolum from %s where departman='MUTFAK' order by bolum , hamad " % tablename
         self.cur.execute(sql)
         # show the result
         self.result = self.cur.fetchall()
@@ -37,7 +37,7 @@ def createBarCodes():
     """
     Create barcode examples and embed in a PDF
     """
-    c = canvas.Canvas("STOKBAR06.pdf", pagesize=A4)
+    c = canvas.Canvas("STOKmutfak06.pdf", pagesize=A4)
     c.setFont("Helvetica", 12)
 
 
@@ -61,7 +61,7 @@ def createBarCodes():
     c.setFont("Helvetica", 30)
     c.drawString(x+90,y-15,str(b))
     c.setFont("Helvetica", 21)
-    c.drawString(x+190,y+35,"SAYIM BAR 30/06/2016")
+    c.drawString(x+190,y+35,"SAYIM MUTFAK 30/06/2016")
     c.setFont("Helvetica", 12)
     y = y - 20 * mm
     orhan=0
