@@ -12,7 +12,7 @@ sys.setdefaultencoding('utf8')
 API_KEY = "58fee02c2e20ed7511b179af994fc34850f84656"
 CHANNEL_NAME = "attendance"
 p = Pushetta(API_KEY)
-
+ab=0
 
 
 
@@ -54,7 +54,7 @@ selectt="SELECT adsoyad,saat,tarih FROM personelgc where mail='0' "
 
 def yenile():
 
-    ab="0"
+
     curmy.execute(selectt)
     aa=curmy.fetchall()
     if len(aa)==0:
@@ -80,22 +80,18 @@ def yenile():
 
 
 
-    """   ab=0
-    aa=cur.execute(slectaylik )
-    print "AYLIK DAGILIM "
-    print " "
-    for row in aa:
-        print '%s -- %s  TL --  %s ADET ' % (row[0], row[2],row[1])
-        ab=ab+row[2]
-
-    print "toplam       :",ab """
-
 while True:
+    ab += 1
 
     subprocess.Popen('python persatt.py')
     ttim.sleep(10)
     yenile()
     conmy.commit()
+    a,b = divmod(ab,30)
+
+    if b==0:
+        subprocess.Popen('python twgonder.py')
+        p.pushMessage(CHANNEL_NAME, ab)
     print "_______________________________________________________________"
     ttim.sleep(300)
 
