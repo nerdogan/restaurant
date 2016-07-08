@@ -91,7 +91,7 @@ while True:
     ttim.sleep(10)
     yenile()
     conmy.commit()
-    a,b = divmod(ab,30)
+    a,b = divmod(ab,50)
 
     if b==0:
         subprocess.Popen('python twgonder.py')
