@@ -49,7 +49,7 @@ curmy.execute("SET character_set_client=utf8")
 
 sys.setdefaultencoding('utf8')
 
-selectt="SELECT adsoyad,saat,tarih FROM personelgc where mail='0' "
+selectt="SELECT adsoyad,saat,tarih,id FROM personelgc where mail='0' "
 
 
 def yenile():
@@ -65,6 +65,7 @@ def yenile():
         a1=row[0]
         a2=str(row[1])
         a3=str(row[2])
+        a4=(row[3])
 
         bodyy="\n\n"+a3+" tarihinde saat "+a2+" personelimiz "+a1+" giriş-çıkış yapmıştır. \n\nBilgilerinize\n NAMIK ERDOĞAN"
         send_email('erdogannamik@gmail.com','qazxcv654152','orhangunendii@gmail.com','personel giriş çıkış bilgilendirme',bodyy)
@@ -73,9 +74,12 @@ def yenile():
         #app.notify(event_name='Gec',trackers=appnot)
         p.pushMessage(CHANNEL_NAME, appnot)
         print row[0],row[1],row[2]
+        curmy.execute("update personelgc SET mail='1' where id=%s ",(a4,))
+        conmy.commit()
+        ttim.sleep(10)
 
 
-    curmy.execute("update personelgc SET mail='1' " )
+
 
 
 
