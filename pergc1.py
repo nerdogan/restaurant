@@ -10,7 +10,7 @@ reload(sys)
 from pushetta import Pushetta
 sys.setdefaultencoding('utf8')
 API_KEY = "58fee02c2e20ed7511b179af994fc34850f84656"
-CHANNEL_NAME = "attendance"
+CHANNEL_NAME = "attendance1"
 p = Pushetta(API_KEY)
 ab=0
 
@@ -72,7 +72,7 @@ def yenile():
         appnot=a3+u" tarihinde saat "+a2+u" personelimiz "+a1+u" giriş yapmıştır"
 
         #app.notify(event_name='Gec',trackers=appnot)
-        p.pushMessage(CHANNEL_NAME, appnot)
+        p.pushMessage(CHANNEL_NAME, appnot,expire="2016-08-30")
         print row[0],row[1],row[2]
         curmy.execute("update personelgc SET mail='1' where id=%s ",(a4,))
         conmy.commit()
@@ -95,8 +95,9 @@ while True:
 
     if b==0:
         subprocess.Popen('python twgonder.py')
-        p.pushMessage(CHANNEL_NAME, ab)
-    print "_______________________________________________________________"
+        subprocess.Popen('python masa1.py')
+        p.pushMessage("admin-nen", ab,expire="2016-08-30")
+    print "_______________________________________________________________" , ab
     ttim.sleep(300)
 
 
