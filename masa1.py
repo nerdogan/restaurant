@@ -11,7 +11,7 @@ import atexit
 from pushetta import Pushetta
 sys.setdefaultencoding('utf8')
 API_KEY = "58fee02c2e20ed7511b179af994fc34850f84656"
-CHANNEL_NAME = "attendance"
+CHANNEL_NAME = "admin-nen"
 p = Pushetta(API_KEY)
 appnot="masa1 kapandı"
 
@@ -60,7 +60,7 @@ while True:
     dt=datetime.now()-timedelta(hours=5)
     interval_type = 'days'
     interval_num = interval_num+1
-    if interval_num==3:
+    if interval_num==2:
         break
     one_day = timedelta(**{interval_type: interval_num})
     dt2=dt-one_day
