@@ -37,7 +37,7 @@ def createBarCodes():
     """
     Create barcode examples and embed in a PDF
     """
-    c = canvas.Canvas("STOKBAR08.pdf", pagesize=A4)
+    c = canvas.Canvas("STOKBAR09.pdf", pagesize=A4)
     c.setFont("Helvetica", 12)
 
 
@@ -61,7 +61,7 @@ def createBarCodes():
     c.setFont("Helvetica", 30)
     c.drawString(x+90,y-15,str(b))
     c.setFont("Helvetica", 21)
-    c.drawString(x+190,y+35,"SAYIM BAR 31/08/2016")
+    c.drawString(x+190,y+35,"SAYIM BAR 30/09/2016")
     c.setFont("Helvetica", 12)
     y = y - 20 * mm
     orhan=0

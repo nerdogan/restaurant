@@ -20,7 +20,7 @@ def kontrol(girdi):
 
 
 wb =  xlwt.Workbook(encoding="utf-8")
-dest_filename = 'empty_bookhaziran.xls'
+dest_filename = 'empty_bookağustos.xls'
 date_format = xlwt.XFStyle()
 date_format.num_format_str = u'#,##0.00₺'
 date_xf = xlwt.easyxf(num_format_str='DD/MM/YYYY')
@@ -28,7 +28,7 @@ date_xf = xlwt.easyxf(num_format_str='DD/MM/YYYY')
 
 
 
-wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\denizbank06.xlsx', read_only=True)
+wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\denizbank08.xlsx', read_only=True)
 ws = wb1["Hesap Hareketleri"]
 aa=0
 ab=0
@@ -67,7 +67,8 @@ for row in ws.rows:
 
         ac=ac+1
 
-
+elma=0
+kesinti="243000000"
 print len(data)
 satir=3
 satir1=1
@@ -81,9 +82,15 @@ for row in range(len(data)/4):
     for col in range(1,2):
 
         if data[aa + 2] <= 0:
-            satir1=satir1+1
-            col+=5
-            satir=satir1
+            if kesinti in data[aa+1]:
+                elma=elma+data[aa+2]
+
+                aa = aa + 4
+                continue
+            satir1 = satir1 + 1
+            col += 5
+            satir = satir1
+
         else:
             satir2=satir2+1
             satir=satir2
@@ -102,6 +109,9 @@ for row in range(len(data)/4):
         ws3.write(satir,col + 3, (data[aa]))
 
         aa = aa + 1
-
-
+ws3.write(satir1+1,7,"kredi kart komisyonu")
+ws3.write(satir1+1,8,elma)
+ws3.write(satir1+4,7,"   Toplam :")
+ws3.write(satir1+4,8,xlwt.Formula("sum(I3:I"+str(satir1+3)+")"))
+print elma
 wb.save(dest_filename)
