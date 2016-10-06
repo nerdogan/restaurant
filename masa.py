@@ -8,7 +8,7 @@ from socket import *
 
 
 
-selectt="SELECT plu_no,urun_adi,adet,tutar,masa_no,n_05,kisi_sayisi,saat FROM DATA WHERE  plu_no<1000"
+selectt="SELECT plu_no,urun_adi,adet,tutar,masa_no,n_05,kisi_sayisi,saat,hesap FROM DATA WHERE  plu_no<1000"
 
 
 
@@ -45,7 +45,7 @@ def yenile():
         if row[2]<0:
             continue
         print '%s masasinda %s TL  %s urun ' % (row[4], row[1],row[2])
-        curmy.execute("insert into ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,saat) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"1",tt2,row[6],row[7]))
+        curmy.execute("insert into ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,saat,hesap) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"1",tt2,row[6],row[7],row[8]))
 
 
         ab=ab+row[3]
