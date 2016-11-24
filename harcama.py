@@ -20,7 +20,7 @@ def kontrol(girdi):
 
 
 wb =  xlwt.Workbook(encoding="utf-8")
-dest_filename = 'empty_bookekim.xls'
+dest_filename = 'empty_book deneme.xls'
 date_format = xlwt.XFStyle()
 date_format.num_format_str = u'#,##0.00₺'
 date_xf = xlwt.easyxf(num_format_str='DD/MM/YYYY')
@@ -28,7 +28,7 @@ date_xf = xlwt.easyxf(num_format_str='DD/MM/YYYY')
 
 
 
-wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\denizbankekim.xlsx', read_only=True)
+wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\denizbank23.xlsx', read_only=True)
 ws = wb1["Hesap Hareketleri"]
 aa=0
 ab=0
@@ -38,6 +38,9 @@ for row in ws.rows:
     ab=ab+1
     if ab==100000:
         break
+    if ab < 8:
+        continue
+
     print "   "
     for cell in row:
         if  ( ac==1 or    ac==3):
