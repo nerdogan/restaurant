@@ -65,8 +65,11 @@ for row in ws.rows:
                 pass
 
             deger1 = datetime.datetime.strptime(str(cell.value), "%d.%m.%Y %H:%M")
-            data.append(deger1)
-            print  deger1
+
+            t = deger1.timetuple()
+            deger2 = datetime.date(t[0],t[1],t[2])
+            data.append(deger2)
+            print  deger2
 
 
         ac=ac+1
