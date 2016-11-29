@@ -129,7 +129,6 @@ def main():
             print i.text.encode('utf-8')
             print  i.user.screen_name
             print i.user.name
-
             tar=(i.created_at).split(' ',5)
             tarr=tar[0]+' '+tar[1]+' '+tar[2]+' '+tar[3]+' '+tar[5]
             date_object = datetime.strptime(tarr, '%a %b %d  %H:%M:%S  %Y')+timedelta(hours=3)

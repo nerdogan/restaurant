@@ -37,9 +37,9 @@ im=img
 res=subprocess.Popen(['zenity','--entry','--text','  isim Giriniz'], stdout=subprocess.PIPE)
 usertext=str(res.communicate()[0][:-1])
 barcode_value=usertext[0:-1]
-dosya=barcode_value+".png"
+dosya="./images/"+barcode_value+".png"
 
 im.save(dosya, 'png')
 
-dosya=barcode_value+".pdf"
+dosya="./images/"+barcode_value+".pdf"
 img.save(dosya)
