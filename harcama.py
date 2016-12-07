@@ -28,7 +28,7 @@ date_xf = xlwt.easyxf(num_format_str='DD/MM/YYYY')
 
 
 
-wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\denizbank23.xlsx', read_only=True)
+wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\denizbankkasim2016.xlsx', read_only=True)
 ws = wb1["Hesap Hareketleri"]
 aa=0
 ab=0
@@ -38,7 +38,7 @@ for row in ws.rows:
     ab=ab+1
     if ab==100000:
         break
-    if ab < 8:
+    if ab < 88:
         continue
 
     print "   "
