@@ -24,6 +24,7 @@ dest_filename = 'empty_book deneme.xls'
 date_format = xlwt.XFStyle()
 date_format.num_format_str = u'#,##0.00₺'
 date_xf = xlwt.easyxf(num_format_str='DD/MM/YYYY')
+style1 = xlwt.easyxf('pattern: pattern solid, fore_colour red;')
 
 
 
