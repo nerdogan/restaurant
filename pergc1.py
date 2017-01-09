@@ -91,14 +91,14 @@ while True:
     ttim.sleep(10)
     yenile()
     conmy.commit()
-    a,b = divmod(ab,150)
+    a,b = divmod(ab,50)
 
     if b==0:
         subprocess.Popen('python twgonder.py')
         subprocess.Popen('python masa1.py')
         p.pushMessage("admin-nen", ab,expire="2017-01-30")
     print "_______________________________________________________________" , ab
-    ttim.sleep(60)
+    ttim.sleep(300)
 
 
 

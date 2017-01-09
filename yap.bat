@@ -10,7 +10,7 @@ rd /S /Q build
 
 zenity --entry --title="nn" --text="gir"   || GOTO :elma
 rem ***** create the exe
-pyinstaller --clean --win-private-assemblies -F nenra.spec --distpath="C:\Users\NAMIK\Desktop\nenra" -w
+pyinstaller  -F masa.spec --distpath="C:\Users\NAMIK\Desktop\masa"
 
 :elma
 zenity --question --text="Barcode.exe �al��t�r�ls�n m� ?"   || GOTO :EOF
