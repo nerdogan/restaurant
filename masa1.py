@@ -24,13 +24,13 @@ con = fdb.connect(
     dsn='nen.duckdns.org/30500:D:\RESTO_2015\DATA\DATABASE.GDB',
     user='sysdba', password='masterkey',
 
-    charset='UTF8' # specify a character set for the connection #
+    charset='UTF8'
      )
 cur=con.cursor()
 
 @atexit.register
 def cikis():
-    p.pushMessage(CHANNEL_NAME, appnot)
+    p.pushMessage(CHANNEL_NAME, appnot,expire="2017-03-19")
 
 
 def yenile():
@@ -38,7 +38,7 @@ def yenile():
 
     print " "
 
-    selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,tah_kod,kisi_sayisi,departman, islem_kod,saat FROM YEDEK_RAPOR WHERE TARIH='"+tt1+"' and plu_no<1000 and urun_turu > 0 "
+    selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,tah_kod,kisi_sayisi,departman, islem_kod,saat,grup3 FROM YEDEK_RAPOR WHERE TARIH='"+tt1+"' and plu_no<1000 and urun_turu > 0 "
     #print selectt1
     ab=0
     aa=cur.execute(selectt1 )
@@ -46,7 +46,7 @@ def yenile():
         if row[2]<0:
             continue
 
-        curmy.execute("insert into ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,departman,islem,saat) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"0",tt2,row[6],row[7],row[8],row[9]))
+        curmy.execute("insert into ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,departman,islem,saat,kategori) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"0",tt2,row[6],row[7],row[8],row[9],row[10]))
 
 
         ab=ab+row[3]

@@ -68,11 +68,11 @@ def yenile():
         a4=(row[3])
 
         bodyy="\n\n"+a3+" tarihinde saat "+a2+" personelimiz "+a1+" giriş-çıkış yapmıştır. \n\nBilgilerinize\n NAMIK ERDOĞAN"
-        send_email('erdogannamik@gmail.com','qazxcv654152','orhangunendii@gmail.com','personel giriş çıkış bilgilendirme',bodyy)
+      # send_email('erdogannamik@gmail.com','qazxcv654152','orhangunendii@gmail.com','personel giriş çıkış bilgilendirme',bodyy)
         appnot=a3+u" tarihinde saat "+a2+u" personelimiz "+a1+u" giriş yapmıştır"
 
         #app.notify(event_name='Gec',trackers=appnot)
-        p.pushMessage(CHANNEL_NAME, appnot,expire="2017-01-30")
+        p.pushMessage(CHANNEL_NAME, appnot,expire="2017-02-19")
         print row[0],row[1],row[2]
         curmy.execute("update personelgc SET mail='1' where id=%s ",(a4,))
         conmy.commit()
@@ -96,7 +96,7 @@ while True:
     if b==0:
         subprocess.Popen('python twgonder.py')
         subprocess.Popen('python masa1.py')
-        p.pushMessage("admin-nen", ab,expire="2017-01-30")
+        p.pushMessage("admin-nen", ab,expire="2017-03-19")
     print "_______________________________________________________________" , ab
     ttim.sleep(300)
 

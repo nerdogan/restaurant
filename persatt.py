@@ -3,6 +3,7 @@ __author__ = 'NAMIK'
 import sys
 reload(sys)
 sys.path.append("C:\Python27\Lib\site-packages\zklib")
+import subprocess
 
 import zklib1
 import time
@@ -57,3 +58,4 @@ if ret == True:
     print "Cihaz Devrede", zk.enableDevice()
 
     print "Bağlantı kesildi.", zk.disconnect()
+#subprocess.Popen('python opencvvv1.py')
