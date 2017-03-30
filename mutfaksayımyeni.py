@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import fdb
 import MySQLdb
 import pymssql
@@ -9,6 +11,11 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.units import mm
 from reportlab.pdfgen import canvas
 from reportlab.graphics import renderPDF
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
+
+pdfmetrics.registerFont(TTFont('tahoma', 'tahoma.ttf'))
+
 
 class Mmdb():
     def __init__(self):
@@ -37,8 +44,8 @@ def createBarCodes():
     """
     Create barcode examples and embed in a PDF
     """
-    c = canvas.Canvas("STOKmutfak09.pdf", pagesize=A4)
-    c.setFont("Helvetica", 12)
+    c = canvas.Canvas("STOKmutfak032017.pdf", pagesize=A4)
+    c.setFont("tahoma", 12)
 
 
 
@@ -58,23 +65,24 @@ def createBarCodes():
     c.drawImage("./images/bishop.png",x+5,y-15)
 
     b=sonuc[0][2]
-    c.setFont("Helvetica", 30)
+    c.setFont("tahoma", 30)
     c.drawString(x+90,y-15,str(b))
-    c.setFont("Helvetica", 21)
-    c.drawString(x+190,y+35,"SAYIM MUTFAK 30/09/2016")
-    c.setFont("Helvetica", 12)
+    c.setFont("tahoma", 21)
+    c.drawString(x+190,y+35,"SAYIM MUTFAK 31/03/2017")
+    c.setFont("tahoma", 12)
     y = y - 20 * mm
     orhan=0
 
     for code in sonuc:
+        print code
         if b!=code[2]:
             if orhan!=0:
                 c.showPage()
                 y = 280* mm
             y = y - 20 * mm
-            c.setFont("Helvetica", 30)
-            c.drawString(x+90,y+35,str(code[2]))
-            c.setFont("Helvetica", 12)
+            c.setFont("tahoma", 30)
+            c.drawString(x+90,y+35,(code[2]).encode('utf-8').strip())
+            c.setFont("tahoma", 12)
 
         b=code[2]
         orhan=orhan+1
