@@ -7,6 +7,7 @@ from socket import *
 import sys
 reload(sys)
 import atexit
+import subprocess
 
 from pushetta import Pushetta
 sys.setdefaultencoding('utf8')
@@ -81,3 +82,7 @@ while True:
 
     conmy.commit()
 conmy.close()
+subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop > bishop"+tt1+".sql ",shell=True)
+subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  test > test"+tt1+".sql ",shell=True)
+subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop | C:\\xampp\\mysql\\bin\\mysql -u nen --password=654152  -h bishop bishop ",shell=True)
+

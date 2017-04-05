@@ -1,8 +1,9 @@
+# -*- coding:utf8 -*-
 # OpenCV program to detect face in real time
 # import libraries of python OpenCV 
 # where its functionality resides
 import cv2
-
+import winsound
 # load the required trained XML classifiers
 # https://github.com/Itseez/opencv/blob/master/
 # data/haarcascades/haarcascade_frontalface_default.xml
@@ -18,7 +19,10 @@ face_cascade = cv2.CascadeClassifier("C:\\Users\\NAMIK\\PycharmProjects\\restaur
 eye_cascade = cv2.CascadeClassifier("C:\\Users\\NAMIK\\PycharmProjects\\restaurant\\haarcascade_eye.xml")
 
 # capture frames from a camera
-cap = cv2.VideoCapture(0)
+#cap = cv2.VideoCapture("http://admin:246080@192.168.2.150:7001/monitor.cgi?Channel=2")
+#cap = cv2.VideoCapture("http://admin:246080@192.168.2.152:7003/monitor.cgi?Channel=4000") #PİZZA FIRINI 4000 #SOYUNMA 1000 #BULAŞIKHANE 2000
+#cap = cv2.VideoCapture("http://admin:246080@192.168.2.151:7002/monitor.cgi?Channel=2000") DIŞ BAHÇE BİR  KASA 20
+cap = cv2.VideoCapture("http://admin:246080@192.168.2.151:7002/monitor.cgi?Channel=10")
 
 # loop runs if capturing has been initialized.
 while 1:
@@ -37,6 +41,7 @@ while 1:
         cv2.rectangle(img, (x, y), (x + w, y + h), (255, 255, 0), 2)
         roi_gray = gray[y:y + h, x:x + w]
         roi_color = img[y:y + h, x:x + w]
+        winsound.Beep(2500,200)
 
         # Detects eyes of different sizes in the input image
         eyes = eye_cascade.detectMultiScale(roi_gray)
