@@ -96,6 +96,7 @@ while True:
     if b==0:
         subprocess.Popen('python twgonder.py')
         subprocess.Popen('python masa1.py')
+        subprocess.Popen('python kasa1.py')
         p.pushMessage("admin-nen", ab,expire="2017-03-19")
     print "_______________________________________________________________" , ab
     ttim.sleep(300)

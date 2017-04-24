@@ -21,8 +21,8 @@ eye_cascade = cv2.CascadeClassifier("C:\\Users\\NAMIK\\PycharmProjects\\restaura
 # capture frames from a camera
 #cap = cv2.VideoCapture("http://admin:246080@192.168.2.150:7001/monitor.cgi?Channel=2")
 #cap = cv2.VideoCapture("http://admin:246080@192.168.2.152:7003/monitor.cgi?Channel=4000") #PİZZA FIRINI 4000 #SOYUNMA 1000 #BULAŞIKHANE 2000
-#cap = cv2.VideoCapture("http://admin:246080@192.168.2.151:7002/monitor.cgi?Channel=2000") DIŞ BAHÇE BİR  KASA 20
-cap = cv2.VideoCapture("http://admin:246080@192.168.2.151:7002/monitor.cgi?Channel=10")
+#cap = cv2.VideoCapture("http://admin:246080@192.168.2.151:7002/monitor.cgi?Channel=2000") DIŞ BAHÇE BİR  KASA 20 arka bahçe loca 4000
+cap = cv2.VideoCapture("http://admin:246080@192.168.2.152:7003/monitor.cgi?Channel=4000")
 
 # loop runs if capturing has been initialized.
 while 1:

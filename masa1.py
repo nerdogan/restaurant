@@ -85,4 +85,4 @@ conmy.close()
 subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop > bishop"+tt1+".sql ",shell=True)
 subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  test > test"+tt1+".sql ",shell=True)
 subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop | C:\\xampp\\mysql\\bin\\mysql -u nen --password=654152  -h bishop bishop ",shell=True)
-
+subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  test | C:\\xampp\\mysql\\bin\\mysql -u nen --password=654152  -h bishop test ",shell=True)
