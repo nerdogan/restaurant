@@ -31,7 +31,7 @@ cur=con.cursor()
 
 @atexit.register
 def cikis():
-    p.pushMessage(CHANNEL_NAME, appnot,expire="2017-03-19")
+    p.pushMessage(CHANNEL_NAME, appnot,expire="2017-04-19")
 
 
 def yenile():

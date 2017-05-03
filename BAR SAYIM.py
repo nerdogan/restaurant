@@ -42,7 +42,7 @@ def createBarCodes():
     """
     Create barcode examples and embed in a PDF
     """
-    c = canvas.Canvas("STOKBARMART2017.pdf", pagesize=A4)
+    c = canvas.Canvas("STOKBARNISAN2017.pdf", pagesize=A4)
     c.setFont("tahoma", 12)
 
 
@@ -66,7 +66,7 @@ def createBarCodes():
     c.setFont("tahoma", 30)
     c.drawString(x+90,y-15,str(b))
     c.setFont("tahoma", 21)
-    c.drawString(x+190,y+35,"SAYIM BAR 31/03/2017")
+    c.drawString(x+190,y+35,"SAYIM BAR 30/04/2017")
     c.setFont("tahoma", 12)
     y = y - 20 * mm
     orhan=0
