@@ -8,6 +8,7 @@ import sys
 reload(sys)
 import atexit
 import subprocess
+from modulemdb import Myddb
 
 from pushetta import Pushetta
 sys.setdefaultencoding('utf8')
@@ -17,10 +18,8 @@ p = Pushetta(API_KEY)
 appnot="masa1 kapandı"
 
 interval_num=0
-tgtIP = gethostbyname('nen.duckdns.org')
-print tgtIP
-conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8',port=30000)
-curmy = conmy.cursor()
+myddb=Myddb()
+
 con = fdb.connect(
     dsn='nen.duckdns.org/30500:D:\RESTO_2015\DATA\DATABASE.GDB',
     user='sysdba', password='masterkey',
@@ -47,13 +46,13 @@ def yenile():
         if row[2]<0:
             continue
 
-        curmy.execute("insert into ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,departman,islem,saat,kategori) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"0",tt2,row[6],row[7],row[8],row[9],row[10]))
+        myddb.cur.execute("insert into bishop.ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,departman,islem,saat,kategori) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"0",tt2,row[6],row[7],row[8],row[9],row[10]))
 
 
         ab=ab+row[3]
 
     print "toplam       :",tt1,ab
-    conmy.commit()
+    myddb.conn.commit()
 
 
 
@@ -61,7 +60,7 @@ while True:
     dt=datetime.now()-timedelta(hours=5)
     interval_type = 'days'
     interval_num = interval_num+1
-    if interval_num==2:
+    if interval_num==5:
         break
     one_day = timedelta(**{interval_type: interval_num})
     dt2=dt-one_day
@@ -71,18 +70,18 @@ while True:
 
 
 
-    strt="delete from ciro where tarih='"+tt2+"' "
+    strt="delete from bishop.ciro where tarih='"+tt2+"' "
     tt3=tt2
-    curmy.execute(strt)
-    son=curmy.execute("select max(id) from ciro")
-    son1="ALTER TABLE ciro AUTO_INCREMENT ="+str(son)
+    myddb.cur.execute(strt)
+    son=myddb.cur.execute("select max(id) from bishop.ciro")
+    son1="ALTER TABLE bishop.ciro AUTO_INCREMENT ="+str(son)
     yenile()
 
 
 
-    conmy.commit()
-conmy.close()
-subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop > bishop"+tt1+".sql ",shell=True)
-subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  test > test"+tt1+".sql ",shell=True)
-subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop | C:\\xampp\\mysql\\bin\\mysql -u nen --password=654152  -h bishop bishop ",shell=True)
-subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  test | C:\\xampp\\mysql\\bin\\mysql -u nen --password=654152  -h bishop test ",shell=True)
+    myddb.conn.commit()
+myddb.conn.close()
+subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop > C:\\Users\\NAMIK\\PycharmProjects\\restaurant\\belge\\bishop"+tt1+".sql ",shell=True)
+subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  test > C:\\Users\\NAMIK\\PycharmProjects\\restaurant\\belge\\test"+tt1+".sql ",shell=True)
+subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop | C:\wamp\\bin\\mysql\\mysql5.7.14\\bin\\mysql -u nen --password=654152  -h localhost bishop ",shell=True)
+subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  test | C:\wamp\\bin\\mysql\\mysql5.7.14\\bin\\mysql -u nen --password=654152  -h localhost test ",shell=True)

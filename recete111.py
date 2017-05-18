@@ -4,8 +4,10 @@ __author__ = 'NAMIK'
 from openpyxl import load_workbook
 from openpyxl import Workbook
 from openpyxl.compat import range
+from openpyxl.styles import Color,Fill
 import re
 import xlwt
+import xlrd
 import datetime
 
 def kontrol(girdi):
@@ -19,8 +21,10 @@ def kontrol(girdi):
         return int(girdi)
 
 
+
+
 wb =  xlwt.Workbook(encoding="utf-8")
-dest_filename = 'empty_book_nisanykb.xls'
+dest_filename = 'empty_book_niss.xls'
 date_format = xlwt.XFStyle()
 date_format.num_format_str = u'#,##0.00₺'
 date_xf = xlwt.easyxf(num_format_str='DD/MM/YYYY')
@@ -29,17 +33,31 @@ style1 = xlwt.easyxf('pattern: pattern solid, fore_colour red;')
 
 
 
-wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\denizbanknisan2017.xlsx', read_only=True)
-ws = wb1["Hesap Hareketleri"]
+wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\ARCHBISHOP.xlsx')
+ws = wb1["KAHVALTI"]
 aa=0
 ab=0
 data=[]
+#value work properly
+print ws['A1'].value #returns foo
+print ws['a21'].value #return bar
+
+#formatting does not - THIS IS THE PROBLEM CODE
+#print ws.cell('A1').style.font.bold #returns False
+#print ws.cell('B1').style.fill.fill_type #returns none
+#print ws.cell('B1').style.fill.start_color.index #returns FFFFFFFF
+
+print ws['a1'].has_style #returns true
+#but these 2 return the same values! even thought C1 was never set and should be different
+print ws['A1'].style
+
+
 for row in ws.rows:
     ac=0
     ab=ab+1
-    if ab==133:
+    if ab==1113:
         break
-    if ab < 9:
+    if ab < 173:
         continue
 
     print "   "
@@ -64,16 +82,13 @@ for row in ws.rows:
             if cell.value == None:
                 ab = 99999
                 pass
-            #deger1 = datetime.datetime.strptime(str(cell.value), "%d.%m.%Y %H:%M")
+            deger1 = datetime.datetime.strptime(str(cell.value), "%d.%m.%Y %H:%M")
+            print deger1
 
-            deger = datetime.datetime.strptime(str(cell.value), "%Y-%m-%d %H:%M:%S")
-            print deger
-
-            t = deger.timetuple()
+            t = deger1.timetuple()
             deger2 = datetime.date(t[0],t[1],t[2])
             data.append(deger2)
             print  deger2
-
 
 
         ac=ac+1

@@ -78,7 +78,7 @@ class TweetRc(object):
     def _GetConfig(self):
         if not self._config:
             self._config = ConfigParser.ConfigParser()
-            self._config.read(os.path.expanduser('.nenra'))
+            self._config.read(os.path.expanduser('./images/a.nenra'))
         return self._config
 
 
