@@ -5,15 +5,14 @@ import time as ttim
 import smtplib
 from socket import *
 import subprocess
+import requests
 import sys
 reload(sys)
-from pushetta import Pushetta
-sys.setdefaultencoding('utf8')
-API_KEY = "58fee02c2e20ed7511b179af994fc34850f84656"
-CHANNEL_NAME = "attendance1"
-p = Pushetta(API_KEY)
-ab=0
 
+
+sys.setdefaultencoding('utf8')
+
+ab=0
 
 
 def send_email(user, pwd, recipient, subject, body):
@@ -72,7 +71,7 @@ def yenile():
         appnot=a3+u" tarihinde saat "+a2+u" personelimiz "+a1+u" giriş yapmıştır"
 
         #app.notify(event_name='Gec',trackers=appnot)
-        p.pushMessage(CHANNEL_NAME, appnot,expire="2017-02-19")
+
         print row[0],row[1],row[2]
         curmy.execute("update personelgc SET mail='1' where id=%s ",(a4,))
         conmy.commit()
@@ -97,7 +96,7 @@ while True:
         subprocess.Popen('python twgonder.py')
         subprocess.Popen('python masa1.py')
         subprocess.Popen('python kasa1.py')
-        p.pushMessage("admin-nen", ab,expire="2017-03-19")
+        #p.pushMessage("admin-nen", ab,expire="2017-03-19")
     print "_______________________________________________________________" , ab
     ttim.sleep(300)
 

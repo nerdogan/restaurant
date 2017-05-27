@@ -10,11 +10,9 @@ import atexit
 import subprocess
 from modulemdb import Myddb
 
-from pushetta import Pushetta
+
 sys.setdefaultencoding('utf8')
-API_KEY = "58fee02c2e20ed7511b179af994fc34850f84656"
-CHANNEL_NAME = "admin-nen"
-p = Pushetta(API_KEY)
+
 appnot="masa1 kapandı"
 
 interval_num=0
@@ -30,7 +28,8 @@ cur=con.cursor()
 
 @atexit.register
 def cikis():
-    p.pushMessage(CHANNEL_NAME, appnot,expire="2017-04-19")
+    pass
+#    p.pushMessage(CHANNEL_NAME, appnot,expire="2017-04-19")
 
 
 def yenile():
