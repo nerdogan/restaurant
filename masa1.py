@@ -82,5 +82,5 @@ while True:
 myddb.conn.close()
 subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop > C:\\Users\\NAMIK\\PycharmProjects\\restaurant\\belge\\bishop"+tt1+".sql ",shell=True)
 subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  test > C:\\Users\\NAMIK\\PycharmProjects\\restaurant\\belge\\test"+tt1+".sql ",shell=True)
-subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop | C:\wamp\\bin\\mysql\\mysql5.7.14\\bin\\mysql -u nen --password=654152  -h localhost bishop ",shell=True)
-subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  test | C:\wamp\\bin\\mysql\\mysql5.7.14\\bin\\mysql -u nen --password=654152  -h localhost test ",shell=True)
+subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop | C:\wamp\\bin\\mysql\\mysql5.7.14\\bin\\mysql -u root  -h localhost bishop ",shell=True)
+subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  test | C:\wamp\\bin\\mysql\\mysql5.7.14\\bin\\mysql -u root   -h localhost test ",shell=True)

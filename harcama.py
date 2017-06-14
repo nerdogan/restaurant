@@ -18,9 +18,13 @@ def kontrol(girdi):
             return float(cikti)
         return int(girdi)
 
+def last_day_of_month(any_day):
+    next_month = any_day.replace(day=28) + datetime.timedelta(days=4)  # this will never fail
+    return next_month - datetime.timedelta(days=next_month.day)
+
 
 wb =  xlwt.Workbook(encoding="utf-8")
-dest_filename = 'empty_book_nisanykb.xls'
+dest_filename = 'empty_book_mayis2017.xls'
 date_format = xlwt.XFStyle()
 date_format.num_format_str = u'#,##0.00₺'
 date_xf = xlwt.easyxf(num_format_str='DD/MM/YYYY')
@@ -29,7 +33,7 @@ style1 = xlwt.easyxf('pattern: pattern solid, fore_colour red;')
 
 
 
-wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\denizbanknisan2017.xlsx', read_only=True)
+wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\denizbankmayis2017.xlsx', read_only=True)
 ws = wb1["Hesap Hareketleri"]
 aa=0
 ab=0
@@ -37,9 +41,9 @@ data=[]
 for row in ws.rows:
     ac=0
     ab=ab+1
-    if ab==133:
+    if ab==1330:
         break
-    if ab < 9:
+    if ab < 152:
         continue
 
     print "   "
@@ -64,9 +68,9 @@ for row in ws.rows:
             if cell.value == None:
                 ab = 99999
                 pass
-            #deger1 = datetime.datetime.strptime(str(cell.value), "%d.%m.%Y %H:%M")
+            deger = datetime.datetime.strptime(str(cell.value), "%d.%m.%Y %H:%M")
 
-            deger = datetime.datetime.strptime(str(cell.value), "%Y-%m-%d %H:%M:%S")
+#            deger = datetime.datetime.strptime(str(cell.value), "%Y-%m-%d %H:%M:%S")
             print deger
 
             t = deger.timetuple()
@@ -120,9 +124,15 @@ for row in range(len(data)/4):
         ws3.write(satir,col + 3, (data[aa]))
 
         aa = aa + 1
+
+deger=last_day_of_month(deger)
+t = deger.timetuple()
+deger2 = datetime.date(t[0], t[1], t[2])
+
+ws3.write(satir1+1,6,deger2,date_xf)
 ws3.write(satir1+1,7,"kredi kart komisyonu")
 ws3.write(satir1+1,8,elma)
 ws3.write(satir1+4,7,"   Toplam :")
 ws3.write(satir1+4,8,xlwt.Formula("sum(I3:I"+str(satir1+3)+")"))
-print elma
+print elma,satir1
 wb.save(dest_filename)
