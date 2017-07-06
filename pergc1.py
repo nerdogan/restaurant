@@ -57,7 +57,7 @@ def yenile():
     curmy.execute(selectt)
     aa=curmy.fetchall()
     if len(aa)==0:
-        print   "Yeni hareket yok"
+        print   "Yeni hareket yok  "
 
 
     for row in aa:
