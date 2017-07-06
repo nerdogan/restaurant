@@ -44,7 +44,7 @@ def createBarCodes():
     """
     Create barcode examples and embed in a PDF
     """
-    c = canvas.Canvas("STOKmutfakMAYIS2017.pdf", pagesize=A4)
+    c = canvas.Canvas("STOKmutfakhaziran2017.pdf", pagesize=A4)
     c.setFont("tahoma", 12)
 
 
@@ -68,15 +68,34 @@ def createBarCodes():
     c.setFont("tahoma", 30)
     c.drawString(x+90,y-15,str(b))
     c.setFont("tahoma", 21)
-    c.drawString(x+190,y+35,"SAYIM MUTFAK 31/05/2017")
+    c.drawString(x+190,y+35,"SAYIM MUTFAK 30/06/2017")
     c.setFont("tahoma", 12)
     y = y - 20 * mm
     orhan=0
+    sayfa=1
 
     for code in sonuc:
         print code
         if b!=code[2]:
             if orhan!=0:
+                c.drawString(x + 190, 20, "SAYIM MUTFAK 30/06/2017     SAYFA  " + str(sayfa))
+                sayfa = sayfa + 1
+
+                c.setFont("Courier", 60)
+                # This next setting with make the text of our
+                # watermark gray, nice touch for a watermark.
+                c.setFillGray(0.3, 0.3)
+                # Set up our watermark document. Our watermark
+                # will be rotated 45 degrees from the direction
+                # of our underlying document.
+                c.saveState()
+                c.translate(500, 100)
+                c.rotate(45)
+                c.drawCentredString(0, 0, "BISHOP NEN ©")
+                c.drawCentredString(0, 300, "BISHOP NEN ©")
+                c.drawCentredString(0, 600, "BISHOP NEN ©")
+                c.restoreState()
+
                 c.showPage()
                 y = 280* mm
             y = y - 20 * mm
@@ -93,19 +112,55 @@ def createBarCodes():
         c.rect(x,y+3,200*mm,10*mm, fill=0)
         y = y - 10 * mm
         if y<20 :
+            c.drawString(x + 190, 20, "SAYIM MUTFAK 30/06/2017     SAYFA  " + str(sayfa))
+            sayfa = sayfa + 1
+
+            c.setFont("Courier", 60)
+            # This next setting with make the text of our
+            # watermark gray, nice touch for a watermark.
+            c.setFillGray(0.3, 0.3)
+            # Set up our watermark document. Our watermark
+            # will be rotated 45 degrees from the direction
+            # of our underlying document.
+            c.saveState()
+            c.translate(500, 100)
+            c.rotate(45)
+            c.drawCentredString(0, 0, "BISHOP NEN ©")
+            c.drawCentredString(0, 300, "BISHOP NEN ©")
+            c.drawCentredString(0, 600, "BISHOP NEN ©")
+            c.restoreState()
+
             c.showPage()
             y = 280* mm
 
 
 
     # draw a QR code
-    qr_code = qr.QrCodeWidget('http://nen.duckdns.org:8080/masa.php')
+    qr_code = qr.QrCodeWidget('http://nen.duckdns.org/siparis/www')
     bounds = qr_code.getBounds()
     width = bounds[2] - bounds[0]
     height = bounds[3] - bounds[1]
     d = Drawing(45, 45, transform=[45./width,0,0,45./height,0,0])
     d.add(qr_code)
     renderPDF.draw(d, c, 15, 50)
+
+    c.drawString(x + 190, 20, "SAYIM MUTFAK 30/06/2017     SAYFA  " + str(sayfa))
+    sayfa = sayfa + 1
+
+    c.setFont("Courier", 60)
+    # This next setting with make the text of our
+    # watermark gray, nice touch for a watermark.
+    c.setFillGray(0.3, 0.3)
+    # Set up our watermark document. Our watermark
+    # will be rotated 45 degrees from the direction
+    # of our underlying document.
+    c.saveState()
+    c.translate(500, 100)
+    c.rotate(45)
+    c.drawCentredString(0, 0, "BISHOP NEN ©")
+    c.drawCentredString(0, 300, "BISHOP NEN ©")
+    c.drawCentredString(0, 600, "BISHOP NEN ©")
+    c.restoreState()
 
     c.save()
 createBarCodes()

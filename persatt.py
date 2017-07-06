@@ -46,7 +46,7 @@ if ret == True:
             print " %s, %s , %s,   %s" % ( lattendance[2].date(), lattendance[2].time(), lattendance[0], state )
             saatt =str(lattendance[2].time())
             tarihh= str(lattendance[2].date())
-            select='INSERT IGNORE INTO personelgc(enrolgc,stringgc,tarih,saat) VALUES('+lattendance[0]+',"'+tarihh+saatt+'","' + tarihh+ '","' + saatt+'") '
+            select='INSERT INTO personelgc(enrolgc,stringgc,tarih,saat) VALUES('+lattendance[0]+',"'+tarihh+saatt+'","' + tarihh+ '","' + saatt+'") ON DUPLICATE key UPDATE saat="'+saatt+'"'
 
             curmy.execute(select)
             conmy.commit()

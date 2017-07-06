@@ -24,7 +24,7 @@ def last_day_of_month(any_day):
 
 
 wb =  xlwt.Workbook(encoding="utf-8")
-dest_filename = 'empty_book_mayis2017ykb.xls'
+dest_filename = 'empty_book_haziran2017.xls'
 date_format = xlwt.XFStyle()
 date_format.num_format_str = u'#,##0.00₺'
 date_xf = xlwt.easyxf(num_format_str='DD/MM/YYYY')
@@ -33,7 +33,7 @@ style1 = xlwt.easyxf('pattern: pattern solid, fore_colour red;')
 
 
 
-wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\denizbankmayis2017ykb.xlsx', read_only=True)
+wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\denizbankhaziran2017.xlsx', read_only=True)
 ws = wb1["Hesap Hareketleri"]
 aa=0
 ab=0
@@ -41,9 +41,9 @@ data=[]
 for row in ws.rows:
     ac=0
     ab=ab+1
-    if ab==127:
+    if ab==819:
         break
-    if ab < 9:
+    if ab < 74:
         continue
 
     print "   "
@@ -68,9 +68,9 @@ for row in ws.rows:
             if cell.value == None:
                 ab = 99999
                 pass
-#            deger = datetime.datetime.strptime(str(cell.value), "%d.%m.%Y %H:%M")
+            deger = datetime.datetime.strptime(str(cell.value), "%d.%m.%Y %H:%M")
 
-            deger = datetime.datetime.strptime(str(cell.value), "%Y-%m-%d %H:%M:%S")
+#            deger = datetime.datetime.strptime(str(cell.value), "%d%m%y")
             print deger
 
             t = deger.timetuple()
@@ -84,6 +84,7 @@ for row in ws.rows:
 
 elma=0
 kesinti="243000000"
+#kesinti="1890666868"
 print len(data)
 satir=3
 satir1=1
