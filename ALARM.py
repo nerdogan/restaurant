@@ -20,7 +20,7 @@ class Form(QDialog):
         self.setLayout(layout)
         self.lineedit.setFocus()
         self.connect(self.lineedit, SIGNAL("returnPressed()"), self.updateUi)
-        self.setWindowTitle("Calculate")
+        self.setWindowTitle("Calcuate")
     def updateUi(self):
         try:
             text = unicode(self.lineedit.text())
