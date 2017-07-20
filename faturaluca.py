@@ -12,7 +12,7 @@ class Mmdb():
 
 
         # connect to the database
-        self.conn = pymssql.connect("WINSERVER","sa","QaZ147WsX","RESTO_2016")
+        self.conn = pymssql.connect("SERVERPC","sa","QaZ123WsX","RESTO_2016")
         # create a cursor
         self.cur = self.conn.cursor()
     def cek(self,sql):
