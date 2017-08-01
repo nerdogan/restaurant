@@ -1,16 +1,16 @@
-# -*- coding: cp1254 -*
+# -*- coding: utf-8 -*
 import modulemdb
 from escpos.printer import Network
-p = Network("192.168.2.223")
+p = Network("192.168.2.222")
 
 p.image('./images/bishop.png')
 p.set(font='a', align='center',height=1,width=1)
 
 p.text("MUTFAK\n")
 p.text(chr(27))
-p.text(chr(45))
-p.text(chr(50))
-p.text(u'DONDURUCU\n')
+p.text(chr(116))
+p.text(chr(61))
+p.text(u'ulaşım  öçşiğü ÖÇŞİĞÜ\n')
 p.text(chr(27))
 p.text(chr(33))
 p.text(chr(17))
