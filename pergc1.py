@@ -93,7 +93,7 @@ while True:
     ab += 1
 
     subprocess.Popen('python persatt.py')
-    subprocess.Popen('python kasa1.py')
+
     ttim.sleep(10)
     yenile()
     conmy.commit()

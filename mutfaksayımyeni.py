@@ -44,7 +44,7 @@ def createBarCodes():
     """
     Create barcode examples and embed in a PDF
     """
-    c = canvas.Canvas("STOKmutfaktemmuz2017.pdf", pagesize=A4)
+    c = canvas.Canvas("STOKmutfakAGUSTOS2017.pdf", pagesize=A4)
     c.setFont("tahoma", 12)
 
 
@@ -68,7 +68,7 @@ def createBarCodes():
     c.setFont("tahoma", 30)
     c.drawString(x+90,y-15,str(b))
     c.setFont("tahoma", 21)
-    c.drawString(x+190,y+35,"SAYIM MUTFAK 31/07/2017")
+    c.drawString(x+190,y+35,"SAYIM MUTFAK 31/08/2017")
     c.setFont("tahoma", 12)
     y = y - 20 * mm
     orhan=0
@@ -78,7 +78,7 @@ def createBarCodes():
         print code
         if b!=code[2]:
             if orhan!=0:
-                c.drawString(x + 190, 20, "SAYIM MUTFAK 31/07/2017     SAYFA  " + str(sayfa))
+                c.drawString(x + 190, 20, "SAYIM MUTFAK 31/08/2017     SAYFA  " + str(sayfa))
                 sayfa = sayfa + 1
 
                 c.setFont("Courier", 60)
@@ -112,7 +112,7 @@ def createBarCodes():
         c.rect(x,y+3,200*mm,10*mm, fill=0)
         y = y - 10 * mm
         if y<20 :
-            c.drawString(x + 190, 20, "SAYIM MUTFAK 31/07/2017     SAYFA  " + str(sayfa))
+            c.drawString(x + 190, 20, "SAYIM MUTFAK 31/08/2017     SAYFA  " + str(sayfa))
             sayfa = sayfa + 1
 
             c.setFont("Courier", 60)
@@ -144,7 +144,7 @@ def createBarCodes():
     d.add(qr_code)
     renderPDF.draw(d, c, 15, 50)
 
-    c.drawString(x + 190, 20, "SAYIM MUTFAK 31/07/2017     SAYFA  " + str(sayfa))
+    c.drawString(x + 190, 20, "SAYIM MUTFAK 31/08/2017     SAYFA  " + str(sayfa))
     sayfa = sayfa + 1
 
     c.setFont("Courier", 60)

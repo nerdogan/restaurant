@@ -8,7 +8,7 @@ from socket import *
 
 
 def yenile():
-    selectt = "SELECT plu_no,urun_adi,adet,tutar,masa_no,n_05,kasa  FROM YEDEK_RAPOR  where  (plu_no>899 and plu_no<909 or plu_no=2000) and tarih='" + tt1 + "' and urun_turu>0"
+    selectt = "SELECT plu_no,urun_adi,adet,tutar,masa_no,n_05,kasa,ISLEM_KOD  FROM YEDEK_RAPOR  where  (plu_no>899 and plu_no<909 or plu_no=2000) and tarih='" + tt1 + "' and urun_turu>0 and urun_turu<50"
 
     selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,tah_kod,kisi_sayisi,saat,departman FROM YEDEK_RAPOR WHERE TARIH='"+tt1+"' and plu_no<1000 and urun_turu > 0 "
     print selectt
@@ -36,8 +36,9 @@ def yenile():
             kno = 106
 
         print '%s masasinda %s TL  %s urun ' % (row[4], row[1],row[2])
-        curmy.execute("insert into kasa  (posid,aciklama,tutar,belgeno,muhkod,tarih,kasano) values (%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],tut,row[4],row[5],tt2,kno))
-
+        curmy.execute(
+            "insert ignore into kasa  (posid,aciklama,tutar,belgeno,muhkod,tarih,kasano,islemid) values (%s,%s,%s,%s,%s,%s,%s,%s)",
+            (row[0], row[1], tut, row[4], row[5], tt2, kno, row[7]))
 
         ab=ab+tut
 
@@ -67,7 +68,7 @@ while True:
         tt2=str(t[0])+"-"+str(t[1])+"-"+str(t[2])
         tgtIP = gethostbyname('nen.duckdns.org')
         print tgtIP
-        conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8',port=30000)
+        conmy = mdb.connect(tgtIP, 'nen','654152', 'test',charset='utf8',port=30000)
         curmy = conmy.cursor()
         con = fdb.connect(
             dsn='192.168.2.251:D:\RESTO_2015\DATA\DATABASE.GDB',
