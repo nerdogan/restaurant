@@ -15,7 +15,7 @@ from docx.shared import Cm
 import os
 
 document = Document('sozlesme.docx')
-
+print len(document.paragraphs)
 style = document.styles['Normal']
 font = style.font
 font.name = 'Book Antiqua'
@@ -27,26 +27,44 @@ for cell in table.row_cells(0):
 		if '[resim123]' in paragraph.text:
 			paragraph.text = ' '
 			run = cell.paragraphs[0].add_run()
-			inline_shape = run.add_picture('./images/001.bmp', width=Cm(2.0))
+			inline_shape = run.add_picture('./images/METiN ALNAR 1.png', width=Cm(2.0))
 
 
 
 
 for paragraph in document.paragraphs:
-    if '[adsoyad]' in paragraph.text:
-        print paragraph.text
-        paragraph.text = u'MAHSUM ŞAHİN'
+	if '[tarih]' in paragraph.text:
+		print paragraph.text
+		paragraph.text=(paragraph.text).replace("[tarih]","04/10/2017")
+		paragraph.style = document.styles['Normal']
+
 
 
 for table in document.tables:
-	print table
+	print len(table.rows)
 
+	for cell in table.row_cells(4):
+		print "xxxxxxxxxxxxx"
+
+		for paragraph in cell.paragraphs:
+			if '[adsoyad]' in paragraph.text:
+				paragraph.text = u'MAHSUMnamık ŞAHİN'
+				paragraph.style = document.styles['Normal']
+			if '[kimlikno]' in paragraph.text:
+				paragraph.text = u'28233564895'
+				paragraph.style = document.styles['Normal']
+			if '[adres]' in paragraph.text:
+				paragraph.text = u'BARBAROS HAYRETTİN PAŞA M. 1988 SK. NO:6B-16'
+				paragraph.style = document.styles['Normal']
+			if '[tarih]' in paragraph.text:
+				paragraph.text = u'12.06.2016'
+				paragraph.style = document.styles['Normal']
 	for cell in table.row_cells(6):
 		print "xxxxxxxxxxxxx"
 
 		for paragraph in cell.paragraphs:
 			if '[adsoyad]' in paragraph.text:
-				paragraph.text = u'MAHSUM ŞAHİN'
+				paragraph.text = u'MAHSUMnamık ŞAHİN'
 				paragraph.style = document.styles['Normal']
 			if '[kimlikno]' in paragraph.text:
 				paragraph.text = u'28233564895'
@@ -63,4 +81,4 @@ for table in document.tables:
 
 document.save('sozlesme2.docx')
 
-os.startfile("sozlesme2.docx")
+#os.startfile("sozlesme2.docx")
