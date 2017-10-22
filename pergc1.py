@@ -74,10 +74,7 @@ def yenile():
         files1 = {'title': appnot, 'url': 'http://nen.duckdns.org/masa.php',
                   'token': 'uttju5EvfwKMJHftmlPMtmj2WvYbUZRgScOQBPoGTfQRqZgXsp5UxWOI0GXyoi4t'}
         r = requests.post(url1, json=files1)
-        files1 = {'title': appnot, 'url': 'http://nen.duckdns.org/masa.php',
-                  'token': 'yeXbzEDMvRV8cdHY0nmVuVmmQ8PZs36cnll9lmnVUq1s4Mp2EuVMNU8OFuIgOZNr'}
-        r = requests.post(url1, json=files1)
-
+        
         print row[0],row[1],row[2]
         curmy.execute("update personelgc SET mail='1' where id=%s ",(a4,))
         conmy.commit()
