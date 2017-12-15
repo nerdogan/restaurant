@@ -24,7 +24,7 @@ def last_day_of_month(any_day):
 
 
 wb =  xlwt.Workbook(encoding="utf-8")
-dest_filename = 'empty_book_haziran2017.xls'
+dest_filename = 'empty_book_112017.xls'
 date_format = xlwt.XFStyle()
 date_format.num_format_str = u'#,##0.00₺'
 date_xf = xlwt.easyxf(num_format_str='DD/MM/YYYY')
@@ -33,7 +33,7 @@ style1 = xlwt.easyxf('pattern: pattern solid, fore_colour red;')
 
 
 
-wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\denizbankhaziran2017.xlsx', read_only=True)
+wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\AccountActivities.xlsx', read_only=True)
 ws = wb1["Hesap Hareketleri"]
 aa=0
 ab=0
