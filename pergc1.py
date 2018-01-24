@@ -71,10 +71,13 @@ def yenile():
       # send_email('erdogannamik@gmail.com','qazxcv654152','orhangunendii@gmail.com','personel giriş çıkış bilgilendirme',bodyy)
         appnot=a3+u" tarihinde saat "+a2+u" personelimiz "+a1+u" giriş yapmıştır"
 
+        files = {'title': appnot, 'url': 'http://nen.duckdns.org/masa.php',
+                  'token': '7gkkjoms34xsg0uiafgp7hyvjj2mw1yayq670z91bom7gciewgfbk59z0vno7eyc'}
         files1 = {'title': appnot, 'url': 'http://nen.duckdns.org/masa.php',
-                  'token': 'uttju5EvfwKMJHftmlPMtmj2WvYbUZRgScOQBPoGTfQRqZgXsp5UxWOI0GXyoi4t'}
+                  'token': 'kpiblcqnj4hpv6382huxm1fk7yxd2dkn8gyqg9vt7pdx8ibmluc4t6a9ldqtql4z'}
+        r = requests.post(url1, json=files)
         r = requests.post(url1, json=files1)
-        
+
         print row[0],row[1],row[2]
         curmy.execute("update personelgc SET mail='1' where id=%s ",(a4,))
         conmy.commit()
@@ -102,7 +105,7 @@ while True:
         subprocess.Popen('python kasa1.py')
         #p.pushMessage("admin-nen", ab,expire="2017-03-19")
     print "_______________________________________________________________" , ab
-    ttim.sleep(300)
+    ttim.sleep(60)
 
 
 
