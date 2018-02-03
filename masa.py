@@ -55,7 +55,7 @@ def yenile():
     print " "
     print " "
 
-    selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,tah_kod,kisi_sayisi,saat,departman,grup3 FROM YEDEK_RAPOR WHERE TARIH='"+tt1+"' and plu_no<1000 and urun_turu > 0 "
+    selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,tah_kod,kisi_sayisi,saat,departman,grup3,birim_fiyati FROM YEDEK_RAPOR WHERE TARIH='"+tt1+"' and plu_no<1000 and urun_turu > 0 "
     print selectt1
     ab=0
     aa=cur.execute(selectt1 )
@@ -67,7 +67,7 @@ def yenile():
         if row[2]<0:
             continue
         print '%s masasinda %s TL  %s urun ' % (row[4], row[1],row[2])
-        curmy.execute("insert into ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,saat,departman,kategori) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"0",tt2,row[6],row[7],row[8],row[9]))
+        curmy.execute("insert into ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,saat,departman,kategori,tutar1) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"0",tt2,row[6],row[7],row[8],row[9],row[10]))
 
 
         ab=ab+row[3]
@@ -96,10 +96,10 @@ while True:
         t=dt.timetuple()
         tt1=str(t[2])+"."+str(t[1])+"."+str(t[0])
         tt2=str(t[0])+"-"+str(t[1])+"-"+str(t[2])
-        tgtIP = gethostbyname('serverpc')
+        tgtIP = gethostbyname('nen.duckdns.org')
         print tgtIP
 
-        conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8',port=3306)
+        conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8',port=30000)
         curmy = conmy.cursor()
         con = fdb.connect(
             dsn='192.168.2.251:D:\RESTO_2015\DATA\DATABASE.GDB',
