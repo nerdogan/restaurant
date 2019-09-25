@@ -7,29 +7,24 @@ from socket import *
 import sys
 reload(sys)
 import atexit
-import subprocess
-from modulemdb import Myddb
 
-
-sys.setdefaultencoding('utf8')
-
-appnot="masa1 kapandı"
 
 interval_num=0
-myddb=Myddb()
-
+tgtIP = gethostbyname('nen.duckdns.org')
+print tgtIP
+conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8',port=30000)
+curmy = conmy.cursor()
 con = fdb.connect(
     dsn='nen.duckdns.org/30500:D:\RESTO_2015\DATA\DATABASE.GDB',
     user='sysdba', password='masterkey',
 
-    charset='UTF8'
+    charset='UTF8' # specify a character set for the connection #
      )
 cur=con.cursor()
 
 @atexit.register
 def cikis():
-    pass
-#    p.pushMessage(CHANNEL_NAME, appnot,expire="2017-04-19")
+    print "aaaaaaaa"
 
 
 def yenile():
@@ -37,7 +32,7 @@ def yenile():
 
     print " "
 
-    selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,tah_kod,kisi_sayisi,departman, islem_kod,saat,grup3,birim_fiyati FROM YEDEK_RAPOR WHERE TARIH='"+tt1+"' and plu_no<1000 and urun_turu > 0 "
+    selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,tah_kod,kisi_sayisi,departman, islem_kod,saat FROM YEDEK_RAPOR WHERE TARIH='"+tt1+"' and plu_no<1000 and urun_turu > 0 "
     #print selectt1
     ab=0
     aa=cur.execute(selectt1 )
@@ -45,13 +40,13 @@ def yenile():
         if row[2]<0:
             continue
 
-        myddb.cur.execute("insert into bishop.ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,departman,islem,saat,kategori,tutar1) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"0",tt2,row[6],row[7],row[8],row[9],row[10],row[11]))
+        curmy.execute("insert into ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,departman,islem,saat) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"0",tt2,row[6],row[7],row[8],row[9]))
 
 
         ab=ab+row[3]
 
     print "toplam       :",tt1,ab
-    myddb.conn.commit()
+    conmy.commit()
 
 
 
@@ -69,18 +64,14 @@ while True:
 
 
 
-    strt="delete from bishop.ciro where tarih='"+tt2+"' "
+    strt="delete from ciro where tarih='"+tt2+"' "
     tt3=tt2
-    myddb.cur.execute(strt)
-    son=myddb.cur.execute("select max(id) from bishop.ciro")
-    son1="ALTER TABLE bishop.ciro AUTO_INCREMENT ="+str(son)
+    curmy.execute(strt)
+    son=curmy.execute("select max(id) from ciro")
+    son1="ALTER TABLE ciro AUTO_INCREMENT ="+str(son)
     yenile()
 
 
 
-    myddb.conn.commit()
-myddb.conn.close()
-subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop > C:\\Users\\NAMIK\\PycharmProjects\\restaurant\\belge\\bishop"+tt1+".sql ",shell=True)
-subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  test > C:\\Users\\NAMIK\\PycharmProjects\\restaurant\\belge\\test"+tt1+".sql ",shell=True)
-subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  bishop | C:\wamp\\bin\\mysql\\mysql5.7.14\\bin\\mysql -u root  -h localhost bishop ",shell=True)
-subprocess.Popen("C:\\xampp\\mysql\\bin\\mysqldump.exe -h 192.168.2.251 -u nen --password=654152  test | C:\wamp\\bin\\mysql\\mysql5.7.14\\bin\\mysql -u root   -h localhost test ",shell=True)
+    conmy.commit()
+conmy.close()

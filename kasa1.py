@@ -5,17 +5,14 @@ from datetime import datetime,timedelta
 import time as ttim
 from socket import *
 import sys
-reload(sys)
 import atexit
 
-
-sys.setdefaultencoding('utf8')
 
 appnot="kasa1 kapandı"
 
 interval_num=0
 tgtIP = gethostbyname('nen.duckdns.org')
-print tgtIP
+print (tgtIP)
 conmy = mdb.connect(tgtIP, 'nen','654152', 'test',charset='utf8',port=30000)
 curmy = conmy.cursor()
 con = fdb.connect(
@@ -34,7 +31,7 @@ def cikis():
 def yenile():
 
 
-    print " "
+    print (" ")
 
     selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,n_05,kasa,ISLEM_KOD  FROM YEDEK_RAPOR  where  (plu_no>899 and plu_no<909 or plu_no=2000) and tarih='" + tt1 + "' and urun_turu>0 and urun_turu<50"
  #print selectt1
@@ -64,7 +61,7 @@ def yenile():
 
         ab=ab+tut
 
-    print "toplam       :",tt1,ab
+    print ("toplam       :",tt1,ab)
     conmy.commit()
 
 
@@ -81,9 +78,12 @@ while True:
     tt1=str(t[2])+"."+str(t[1])+"."+str(t[0])
     tt2=str(t[0])+"-"+str(t[1])+"-"+str(t[2])
 
-
-
-    tt3=tt2
+    strt = "delete from kasa where tarih='" + tt2 + "' "
+    tt3 = tt2
+    curmy.execute(strt)
+    son = curmy.execute("select max(kasaid) from kasa")
+    son1 = "ALTER TABLE kasa AUTO_INCREMENT =" + str(son)
+    conmy.commit()
 
     yenile()
     interval_num = interval_num + 1
