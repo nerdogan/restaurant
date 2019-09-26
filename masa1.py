@@ -5,13 +5,12 @@ from datetime import datetime,timedelta
 import time as ttim
 from socket import *
 import sys
-reload(sys)
 import atexit
 
 
 interval_num=0
 tgtIP = gethostbyname('nen.duckdns.org')
-print tgtIP
+print (tgtIP)
 conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8',port=30000)
 curmy = conmy.cursor()
 con = fdb.connect(
@@ -24,13 +23,13 @@ cur=con.cursor()
 
 @atexit.register
 def cikis():
-    print "aaaaaaaa"
+    print ("aaaaaaaa")
 
 
 def yenile():
 
 
-    print " "
+    print (" ")
 
     selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,tah_kod,kisi_sayisi,departman, islem_kod,saat FROM YEDEK_RAPOR WHERE TARIH='"+tt1+"' and plu_no<1000 and urun_turu > 0 "
     #print selectt1
@@ -45,7 +44,7 @@ def yenile():
 
         ab=ab+row[3]
 
-    print "toplam       :",tt1,ab
+    print ("toplam       :",tt1,ab)
     conmy.commit()
 
 

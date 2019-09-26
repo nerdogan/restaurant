@@ -45,9 +45,7 @@ def yenile():
     print ("toplam       :",ab)
     conmy.commit()
 
-
-
-
+    print(datetime.now())
     print ("--------------------------------------------------------------------------------- ")
     """   ab=0
     aa=cur.execute(slectaylik )
@@ -87,6 +85,7 @@ while True:
         curmy.execute(son1)
         conmy.commit()
         conmy.close()
+
     except:
         ttim.sleep(60)
         pass
