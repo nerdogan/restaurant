@@ -69,6 +69,7 @@ while True:
     son=curmy.execute("select max(id) from ciro")
     son1="ALTER TABLE ciro AUTO_INCREMENT ="+str(son)
     yenile()
+    print (datetime.now())
 
 
 
