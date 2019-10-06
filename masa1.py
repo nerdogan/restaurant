@@ -6,7 +6,7 @@ import time as ttim
 from socket import *
 import sys
 import atexit
-
+import subprocess
 
 interval_num=0
 tgtIP = gethostbyname('nen.duckdns.org')
@@ -53,7 +53,7 @@ while True:
     dt=datetime.now()-timedelta(hours=5)
     interval_type = 'days'
     interval_num = interval_num+1
-    if interval_num==2:
+    if interval_num==3:
         break
     one_day = timedelta(**{interval_type: interval_num})
     dt2=dt-one_day
@@ -69,8 +69,17 @@ while True:
     son=curmy.execute("select max(id) from ciro")
     son1="ALTER TABLE ciro AUTO_INCREMENT ="+str(son)
     yenile()
+    print (datetime.now())
 
 
 
     conmy.commit()
 conmy.close()
+
+subprocess.Popen("""mysqldump -h 192.168.2.251 -u nen --password=654152  bishop > /home/nerdogan/yedek/"""+tt2+"""bishop.sql""",shell=True)
+
+subprocess.Popen("""mysqldump -h 192.168.2.251 -u nen --password=654152  test > /home/nerdogan/yedek/"""+tt2+"""test.sql""",shell=True)
+
+
+
+

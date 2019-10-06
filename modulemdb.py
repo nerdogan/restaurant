@@ -11,7 +11,7 @@
 #-------------------------------------------------------------------------------
 
 import MySQLdb
-import os
+import fdb
 from socket import *
 import nenraconfig
 
@@ -24,7 +24,7 @@ print(tgtIP)
 class Myddb():
     def __init__(self):
         # connect to the database
-        self.conn = MySQLdb.connect(tgtIP, nenraconfig._GetOption('user'), nenraconfig._GetOption('password'), 'test', charset='utf8',port=int(nenraconfig._GetOption('port')));
+        self.conn = MySQLdb.connect(tgtIP, nenraconfig._GetOption('user'), nenraconfig._GetOption('password'), 'bishop', charset='utf8',port=int(nenraconfig._GetOption('port')));
 
 
         # create a cursor
@@ -50,11 +50,11 @@ class Myddb():
         # extract all the data
         #sql = "select * from %s" % self.tablename
         sql=" '%"+ sql +"%'"
-        print sql
+      #  print sql
         sql1="select * from "+tablenam+ " where "+colname+" like "+sql
         if colname=="hamad":
             sql1=sql1+"and kategori<>3 or hamkod like "+sql +" or barkod1 like "+sql
-        print sql1
+       # print sql1
         self.cur.execute(sql1)
         # show the result
         self.result = self.cur.fetchall()
@@ -63,7 +63,7 @@ class Myddb():
         # extract all the data
         #sql = "select * from %s" % self.tablename
         #sql="'"+ sql +"'"
-        print sql
+      #  print sql
         sql1="select * from "+tablenam+ " where "+colname+" = %s "
 
         self.cur.execute(sql1,[sql])
@@ -75,9 +75,9 @@ class Myddb():
         # extract all the data
         #sql = "select * from %s" % self.tablename
         #sql="'"+ sql +"'"
-        print sql
+     #   print sql
         sql1="delete from "+tablenam+ " where "+colname+" = %s "
-        print sql1
+   #     print sql1
         self.cur.execute(sql1,[sql])
         # show the result
         self.result =  self.cur.lastrowid
@@ -91,11 +91,11 @@ class Myddb():
         #sql="'"+ sql +"'"
 
         sql1="insert into recete (menukod,hamkod,miktar) values (%s,%s,%s)"
-        print sql1
-        print self.cur.execute(sql1,(deger0,deger1,deger2))
+   #     print sql1
+        print(self.cur.execute(sql1, (deger0, deger1, deger2)))
 
         # show the result
-        print "Auto Increment ID: %s" % self.cur.lastrowid
+        print("Auto Increment ID: %s" % self.cur.lastrowid)
         self.result = self.cur.lastrowid
 
         return self.result
@@ -133,11 +133,11 @@ class Myddb1():
         # extract all the data
         #sql = "select * from %s" % self.tablename
         sql=" '%"+ sql +"%'"
-        print sql
+        print(sql)
         sql1="select * from "+tablenam+ " where "+colname+" like "+sql
         if colname=="hamad":
             sql1=sql1+"and kategori<>3 or hamkod like "+sql +" or barkod1 like "+sql
-        print sql1
+        print(sql1)
         self.cur.execute(sql1)
         # show the result
         self.result = self.cur.fetchall()
@@ -146,7 +146,7 @@ class Myddb1():
         # extract all the data
         #sql = "select * from %s" % self.tablename
         #sql="'"+ sql +"'"
-        print sql
+        print(sql)
         sql1="select * from "+tablenam+ " where "+colname+" = %s "
 
         self.cur.execute(sql1,[sql])
@@ -158,9 +158,9 @@ class Myddb1():
         # extract all the data
         #sql = "select * from %s" % self.tablename
         #sql="'"+ sql +"'"
-        print sql
+        print(sql)
         sql1="delete from "+tablenam+ " where "+colname+" = %s "
-        print sql1
+        print(sql1)
         self.cur.execute(sql1,[sql])
         # show the result
         self.result =  self.cur.lastrowid
@@ -174,11 +174,11 @@ class Myddb1():
         #sql="'"+ sql +"'"
 
         sql1="insert into recete (menukod,hamkod,miktar) values (%s,%s,%s)"
-        print sql1
-        print self.cur.execute(sql1,(deger0,deger1,deger2))
+        print(sql1)
+        print(self.cur.execute(sql1, (deger0, deger1, deger2)))
 
         # show the result
-        print "Auto Increment ID: %s" % self.cur.lastrowid
+        print("Auto Increment ID: %s" % self.cur.lastrowid)
         self.result = self.cur.lastrowid
 
         return self.result
@@ -186,3 +186,17 @@ class Myddb1():
     def kapat(self):
         self.cur.close()
         self.conn.close()
+
+
+class fbdd():
+    def __init__(self):
+        self.con = fdb.connect(
+            dsn= nenraconfig._GetOption1('server'),
+            user=nenraconfig._GetOption1('user'),
+            password=nenraconfig._GetOption1('password'),
+
+            charset='UTF8'  # specify a character set for the connection #
+        )
+        self.cur = self.con.cursor()
+
+
