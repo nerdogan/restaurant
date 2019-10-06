@@ -10,17 +10,23 @@
 # Licence:     <your licence>
 #-------------------------------------------------------------------------------
 
-import ConfigParser
+import configparser
 import os
 
 
 def _GetConfig():
-    _config = ConfigParser.ConfigParser()
+    _config = configparser.ConfigParser()
     _config.read(os.path.expanduser('./images/a.nenra'))
     return _config
 
 def _GetOption( option):
     try:
         return _GetConfig().get('Nenra', option)
+    except:
+        return None
+
+def _GetOption1( option):
+    try:
+        return _GetConfig().get('FBD', option)
     except:
         return None
