@@ -24,7 +24,7 @@ def last_day_of_month(any_day):
 
 
 wb =  xlwt.Workbook(encoding="utf-8")
-dest_filename = 'empty_book_122017.xls'
+dest_filename = 'empty_book_deneme.xls'
 date_format = xlwt.XFStyle()
 date_format.num_format_str = u'#,##0.00₺'
 date_xf = xlwt.easyxf(num_format_str='DD/MM/YYYY')
