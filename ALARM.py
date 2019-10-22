@@ -22,8 +22,9 @@ class Form(QDialog):
         self.connect(self.lineedit, SIGNAL("returnPressed()"), self.updateUi)
         self.setWindowTitle("Calcuate")
     def updateUi(self):
+        text = (self.lineedit.text())
         try:
-            text = unicode(self.lineedit.text())
+
             self.browser.append("%s = <b>%s</b>" % (text, eval(text)))
         except:
             self.browser.append("<font color=red>%s is invalid!</font>" % text)
@@ -31,24 +32,25 @@ class Form(QDialog):
 
 try:
     due = QTime.currentTime()
-    print due
+    print(due)
     message = "Alert!"
     if len(sys.argv) < 2:
         raise ValueError
     hours, mins = sys.argv[1].split(":")
     due = QTime(int(hours), int(mins))
-    print due
+    print(due)
     if not due.isValid():
         raise ValueError
     if len(sys.argv) > 2:
         message = " ".join(sys.argv[2:])
+
 except ValueError:
     message = "Usage: alert.pyw HH:MM [optional message]" # 24hr clock
 
 
 
 while QTime.currentTime() < due:
-    print due
+    print(due)
     time.sleep(20) # 20 seconds
 
 """
