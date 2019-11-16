@@ -7,9 +7,13 @@ from socket import *
 import subprocess
 import requests
 import sys
+import nenraconfig
+
+token=nenraconfig._GetOption2('token')
+
 
 url1 = 'https://pushmeapi.jagcesar.se'
-token = "1000513595:AAGoRRD_E42-JCpikul1htVbaqx5QQ-VG6c"
+
 ab=0
 
 

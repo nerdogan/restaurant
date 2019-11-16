@@ -30,3 +30,8 @@ def _GetOption1( option):
         return _GetConfig().get('FBD', option)
     except:
         return None
+def _GetOption2( option):
+    try:
+        return _GetConfig().get('tele', option)
+    except:
+        return None
