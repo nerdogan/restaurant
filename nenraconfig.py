@@ -35,3 +35,8 @@ def _GetOption2( option):
         return _GetConfig().get('tele', option)
     except:
         return None
+def _GetOption3( option):
+    try:
+        return _GetConfig().get('Nenra1', option)
+    except:
+        return None
