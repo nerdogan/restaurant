@@ -64,6 +64,7 @@ def yenile():
         if row[2]<0:
             continue
         print('%s masasinda %s TL  %s urun ' % (row[4], row[1], row[2]))
+
         curmy.execute("insert into ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,saat,departman,kategori,tutar1) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"0",tt2,row[6],row[7],row[8],row[9],row[10]))
 
 
