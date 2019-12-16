@@ -30,7 +30,7 @@ def yenile():
 
 
     print (" ")
-    selectt1 = "SELECT plu_no,urun_adi,adet,tutar,masa_no,tah_kod,kisi_sayisi,saat,departman,grup3,birim_fiyati FROM YEDEK_RAPOR WHERE TARIH='" + tt1 + "' and plu_no<1000 and urun_turu > 0 "
+    selectt1 = "SELECT plu_no,urun_adi,adet,tutar,masa_no,tah_kod,kisi_sayisi,saat,departman,grup3,birim_fiyati,islem_kod FROM YEDEK_RAPOR WHERE TARIH='" + tt1 + "' and plu_no<1000 and urun_turu > 0 "
     #
     ab=0
     aa=cur.execute(selectt1 )
@@ -39,7 +39,7 @@ def yenile():
             continue
 
 
-        curmy.execute("insert into ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,saat,departman,kategori,tutar1) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"0",tt2,row[6],row[7],row[8],row[9],row[10]))
+        curmy.execute("insert into ciro  (pluno,urun,adet,tutar,masano,tahkod,acik,tarih,kisi,saat,departman,kategori,tutar1,islem) values (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",(row[0],row[1],row[2],row[3],row[4],row[5],"0",tt2,row[6],row[7],row[8],row[9],row[10],row[11]))
 
 
         ab=ab+row[3]
