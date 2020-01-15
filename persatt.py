@@ -2,8 +2,6 @@
 from __future__ import print_function
 __author__ = 'NAMIK'
 import sys
-
-
 #sys.path.append("/usr/local/lib/python3.5/dist-packages/zklib")
 import subprocess
 
