@@ -1,53 +1,29 @@
-# -*- coding:cp1254 -*-
 __author__ = 'NAMIK'
 
-from openpyxl import load_workbook
-from openpyxl import Workbook
-from openpyxl.compat import range
+import MySQLdb as mdb
+from socket import *
+from datetime import time,timedelta
 
+tgtIP = gethostbyname('nen.duckdns.org')
+print(tgtIP)
+conmy = mdb.connect(tgtIP, "nen","654152", "bishop",charset='utf8',port=30000)
+curmy = conmy.cursor()
+curmy.execute("SET NAMES UTF8")
+curmy.execute("SET character_set_client=utf8")
 
-wb = Workbook()
-dest_filename = 'empty_book2.xlsx'
+bul =curmy.execute("select adsoyad,tarih,saat from personelgc where tarih between '2019-12-01' and '2020-01-01' and enrolgc=5 order by adsoyad,tarih,saat")
+bul=curmy.fetchall()
+a=0
+for b in (bul):
+    if (b[2])>timedelta(hours=7):
+        tar=b[1]
+        sat=b[2]
+        a=1
+        continue
 
+    else:
+        if (a==1):
+            print (tar,b[1])
+            print (b[2]-sat+timedelta(hours=24))
+            a=0
 
-wb1 = load_workbook('C:\\Users\\NAMIK\\Google Drive\\bishop\\PERSONEL\\bordrokasým.xlsx', read_only=True)
-ws = wb1['Sayfa1']
-aa=0
-ab=0
-data=[]
-for row in ws.rows:
-    ac=0
-    ab=ab+1
-    if ab==100000:
-        break
-    print "   "
-    for cell in row:
-        if (ab > 11) and (ab%3==0) and (ac==0 or ac==3 or  ac==20):
-            if cell.value==None:
-                ab=99999
-            data.append(cell.value)
-            print cell.value
-
-            print ab,ac+1
-        ac=ac+1
-
-
-print len(data)
-
-ws3 = wb.create_sheet(title="Data12")
-for row in range(len(data)/3):
-    for col in range(1,2):
-        ws3.cell(column=col, row=row+1, value="%s" % data[aa])
-        aa=aa+1
-
-
-        ws3.cell(column=col+1, row=row+1, value="%s" %  data[aa])
-
-        aa=aa+1
-
-        ws3.cell(column=col+2, row=row+1, value="%s" %  str(data[aa]))
-
-        aa=aa+1
-
-
-wb.save(filename = dest_filename)

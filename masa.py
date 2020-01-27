@@ -4,10 +4,6 @@ from datetime import datetime,timedelta
 import time as ttim
 from socket import *
 
-
-
-
-
 selectt="SELECT plu_no,urun_adi,adet,tutar,masa_no,n_05,kisi_sayisi,saat,hesap,departman,grup3 FROM DATA WHERE  plu_no<1000"
 
 
@@ -103,8 +99,9 @@ while True:
         )
         cur=con.cursor()
         yenile()
-        ttim.sleep(60)
         conmy.commit()
+        ttim.sleep(60)
+
         strt="delete from ciro where tarih='"+tt2+"' "
         tt3=tt2
         curmy.execute(strt)

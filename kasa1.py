@@ -13,7 +13,7 @@ appnot="kasa1 kapandı"
 interval_num=0
 tgtIP = gethostbyname('nen.duckdns.org')
 print (tgtIP)
-conmy = mdb.connect(tgtIP, 'nen','654152', 'test',charset='utf8',port=30000)
+conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8',port=30000)
 curmy = conmy.cursor()
 con = fdb.connect(
     dsn='nen.duckdns.org/30500:D:\RESTO_2015\DATA\DATABASE.GDB',
