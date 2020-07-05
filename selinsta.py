@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-
+import time
 
 def login(driver):
     username = "erdogannamik@gmail.com"  # <username here>
@@ -11,11 +11,12 @@ def login(driver):
 
     # Load page
     driver.get("https://www.instagram.com/accounts/login/")
+    time.sleep(3)
 
     # Login
-    driver.find_element_by_xpath("//div/input[@name='username']").send_keys(username)
-    driver.find_element_by_xpath("//div/input[@name='password']").send_keys(password)
-    driver.find_element_by_xpath("//span/button").click()
+    driver.find_element_by_name("username").send_keys(username)
+    driver.find_element_by_name("password").send_keys(password)
+    driver.find_element_by_xpath("/html/body/div[1]/section/main/div/article/div/div[1]/div/form/div[4]/button").click()
 
     # Wait for the login page to load
     WebDriverWait(driver, 15).until(
@@ -46,7 +47,7 @@ def scrape_followers(driver, account):
 
 
 if __name__ == "__main__":
-    driver = webdriver.Chrome()
+    driver = webdriver.Firefox()
     try:
         login(driver)
         followers = scrape_followers(driver, "instagram")

@@ -56,5 +56,6 @@ if ret == True:
     print("Cihaz Devrede", zk.enableDevice())
 
     print("Bağlantı kesildi.", zk.disconnect())
+    print(len(attendance))
 
 #subprocess.Popen('python opencvvv1.py')
