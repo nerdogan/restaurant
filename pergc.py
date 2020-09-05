@@ -92,7 +92,7 @@ while True:
 
     subprocess.Popen("/home/nerdogan/PycharmProjects/restaurant/venv/bin/python persatt.py",shell=True)
 
-    subprocess.Popen("python3 getiryemek.py",shell=True)
+#    subprocess.Popen("python3 getiryemek.py",shell=True)
 
     ttim.sleep(10)
     yenile()

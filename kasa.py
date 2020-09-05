@@ -28,12 +28,14 @@ def yenile():
         if row[0] != 2000:
             kno = 101
 
-        if (row[1] == "* Trst") or (row[1] == "* Tip"):
-            kno = 102
-        if row[6] == "DENIZ BANK":
-            kno = 105
-        elif row[6] == "YAPI KREDI":
+        if (row[1]=="* Trst") or (row[1]=="* Tip"):
+            kno=102
+        if row[6]=="DENIZ BANK":
+            kno=105
+        if row[6] == "YAPI KREDI":
             kno = 106
+        elif row[6]=="EFT":
+            kno=107
 
         print('%s masasinda %s TL  %s urun ' % (row[4], row[1], row[2]))
         curmy.execute(
@@ -66,7 +68,7 @@ while True:
         tt2 = str(t[0]) + "-" + str(t[1]) + "-" + str(t[2])
         tgtIP = gethostbyname('nen.duckdns.org')
         print(tgtIP)
-        conmy = mdb.connect(tgtIP, 'nen', '654152', 'bishop', charset='utf8', port=30000)
+        conmy = mdb.connect(tgtIP, 'nen', '654152', 'test', charset='utf8', port=30000)
         curmy = conmy.cursor()
         con = fdb.connect(
             dsn='nen.duckdns.org/30500:D:\RESTO_2015\DATA\DATABASE.GDB',

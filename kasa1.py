@@ -52,8 +52,10 @@ def yenile():
             kno=102
         if row[6]=="DENIZ BANK":
             kno=105
-        elif row[6]=="YAPI KREDI":
-            kno=106
+        if row[6] == "YAPI KREDI":
+            kno = 106
+        elif row[6]=="EFT":
+            kno=107
 
 
         curmy.execute("insert ignore into kasa  (posid,aciklama,tutar,belgeno,muhkod,tarih,kasano,islemid) values (%s,%s,%s,%s,%s,%s,%s,%s)",
