@@ -68,7 +68,7 @@ while True:
         tt2 = str(t[0]) + "-" + str(t[1]) + "-" + str(t[2])
         tgtIP = gethostbyname('nen.duckdns.org')
         print(tgtIP)
-        conmy = mdb.connect(tgtIP, 'nen', '654152', 'test', charset='utf8', port=30000)
+        conmy = mdb.connect(tgtIP, 'nen', '654152', 'bishop', charset='utf8', port=30000)
         curmy = conmy.cursor()
         con = fdb.connect(
             dsn='nen.duckdns.org/30500:D:\RESTO_2015\DATA\DATABASE.GDB',
