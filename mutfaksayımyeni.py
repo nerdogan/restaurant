@@ -2,7 +2,6 @@
 
 import fdb
 import MySQLdb
-import pymssql
 from socket import *
 from reportlab.graphics.barcode import code39, code128, code93
 from reportlab.graphics.barcode import eanbc, qr, usps
@@ -39,12 +38,14 @@ class Mmdb():
 
 Mmdb1=Mmdb()
 sonuc= Mmdb1.cek("hammadde")
-print sonuc[0][0], sonuc[0][1]
+print(sonuc[0][0], sonuc[0][1])
+
+
 def createBarCodes():
     """
     Create barcode examples and embed in a PDF
     """
-    c = canvas.Canvas("STOKmutfakAGUSTOS2017.pdf", pagesize=A4)
+    c = canvas.Canvas("STOKmutfaksubat2020.pdf", pagesize=A4)
     c.setFont("tahoma", 12)
 
 
@@ -68,17 +69,17 @@ def createBarCodes():
     c.setFont("tahoma", 30)
     c.drawString(x+90,y-15,str(b))
     c.setFont("tahoma", 21)
-    c.drawString(x+190,y+35,"SAYIM MUTFAK 31/08/2017")
+    c.drawString(x+190,y+35,"SAYIM MUTFAK 31/01/2020")
     c.setFont("tahoma", 12)
     y = y - 20 * mm
     orhan=0
     sayfa=1
 
     for code in sonuc:
-        print code
+        print(code)
         if b!=code[2]:
             if orhan!=0:
-                c.drawString(x + 190, 20, "SAYIM MUTFAK 31/08/2017     SAYFA  " + str(sayfa))
+                c.drawString(x + 190, 20, "SAYIM MUTFAK 31/01/2020     SAYFA  " + str(sayfa))
                 sayfa = sayfa + 1
 
                 c.setFont("Courier", 60)
@@ -105,14 +106,14 @@ def createBarCodes():
 
         b=code[2]
         orhan=orhan+1
-        print code[0],code[1]
-        barcode93 = code93.Standard93(code[0])
+        print(code[0], code[1])
+        barcode93 = code93.Standard93(str(code[0]))
         barcode93.drawOn(c, x, y+10)
         c.drawString(x+90,y+15,str(code[0])+" "+ code[1])
         c.rect(x,y+3,200*mm,10*mm, fill=0)
         y = y - 10 * mm
         if y<20 :
-            c.drawString(x + 190, 20, "SAYIM MUTFAK 31/08/2017     SAYFA  " + str(sayfa))
+            c.drawString(x + 190, 20, "SAYIM MUTFAK 31/01/2020     SAYFA  " + str(sayfa))
             sayfa = sayfa + 1
 
             c.setFont("Courier", 60)
@@ -144,7 +145,7 @@ def createBarCodes():
     d.add(qr_code)
     renderPDF.draw(d, c, 15, 50)
 
-    c.drawString(x + 190, 20, "SAYIM MUTFAK 31/08/2017     SAYFA  " + str(sayfa))
+    c.drawString(x + 190, 20, "SAYIM MUTFAK 31/01/2020     SAYFA  " + str(sayfa))
     sayfa = sayfa + 1
 
     c.setFont("Courier", 60)

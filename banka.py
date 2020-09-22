@@ -13,7 +13,7 @@ print(pid.value)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
-xls=pd.ExcelFile("C:\\Users\\NAMIK\\DownLoads\\denizbank aralık.xls")
+xls=pd.ExcelFile("C:\\Users\\NAMIK\\DownLoads\\denizbank 202008.xls")
 ana= xls.parse( skiprows=7, index_col=None, na_values=['NA'])
 ana['Tarih']=pd.to_datetime(ana['Tarih'],dayfirst=True)
 
@@ -21,8 +21,8 @@ ana['Tarih']=pd.to_datetime(ana['Tarih'],dayfirst=True)
 # Verilen tarih aralığındaki kart komisyonlarını günlük ve toplamının bulunması excel dosyası olarak kaydeder
 har=ana[ana['Açıklama'].str.contains('243000', regex=False)==True]
 filt=har['Tutar(TL)']<0
-filt1=har['Tarih'].dt.date >= pd.to_datetime("2019-12-01")
-filt2=har['Tarih'].dt.date <= pd.to_datetime("2019-12-31")
+filt1=har['Tarih'].dt.date >= pd.to_datetime("2020-08-01")
+filt2=har['Tarih'].dt.date <= pd.to_datetime("2020-08-31")
 df=(har[filt&filt1&filt2])
 df=df.groupby(df.Tarih.dt.date)['Tutar(TL)'].sum()
 print (df)
@@ -32,8 +32,8 @@ export_excel = df.to_excel (r'C:\Users\namik\OneDrive\Desktop\gunlukkomisyon.xls
 # Verilen tarih aralığındaki kart komisyonlarını günlük ve toplamının bulunması excel dosyası olarak kaydeder
 har=ana[ana['Açıklama'].str.contains('243000|Aktarım|Artırım', regex=True)==False]
 filt=har['Tutar(TL)']<0
-filt1=har['Tarih'].dt.date >= pd.to_datetime("2019-09-01")
-filt2=har['Tarih'].dt.date <= pd.to_datetime("2019-09-30")
+filt1=har['Tarih'].dt.date >= pd.to_datetime("2020-08-01")
+filt2=har['Tarih'].dt.date <= pd.to_datetime("2020-08-31")
 df=(har[filt&filt1&filt2])
 print (df)
 print (df.sum())
