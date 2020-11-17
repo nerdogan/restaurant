@@ -22,20 +22,33 @@ def yenile():
         tut = row[3]
         kno = 100
 
+        # harcamalar
         if row[3] < 0:
             kno = 111
 
+        # indirim
         if row[0] != 2000:
             kno = 101
 
+        # servis
         if (row[1] == "* Trst") or (row[1] == "* Tip"):
             kno = 102
+        if row[6] == "PAKNAKIT":
+            kno = 98
+        if row[6] == "PAKDENIZ":
+            kno = 103
+        if row[6] == "PAKYKB":
+            kno = 104
         if row[6] == "DENIZ BANK":
             kno = 105
         if row[6] == "YAPI KREDI":
             kno = 106
-        elif (row[6] == "EFT") or (row[6] == "GETIRONLINE") or (row[6] == "YSONLINE"):
+        if row[6] == "EFT":
             kno = 107
+        if row[6] == "GETIRONLINE":
+            kno = 108
+        if row[6] == "YSONLINE":
+            kno = 109
 
         print('%s masasinda %s TL  %s urun ' % (row[4], row[1], row[2]))
         curmy.execute(
