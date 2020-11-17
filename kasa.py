@@ -28,14 +28,14 @@ def yenile():
         if row[0] != 2000:
             kno = 101
 
-        if (row[1]=="* Trst") or (row[1]=="* Tip"):
-            kno=102
-        if row[6]=="DENIZ BANK":
-            kno=105
+        if (row[1] == "* Trst") or (row[1] == "* Tip"):
+            kno = 102
+        if row[6] == "DENIZ BANK":
+            kno = 105
         if row[6] == "YAPI KREDI":
             kno = 106
-        elif row[6]=="EFT":
-            kno=107
+        elif (row[6] == "EFT") or (row[6] == "GETIRONLINE") or (row[6] == "YSONLINE"):
+            kno = 107
 
         print('%s masasinda %s TL  %s urun ' % (row[4], row[1], row[2]))
         curmy.execute(
@@ -89,7 +89,7 @@ while True:
         conmy.close()
 
         dongu += 1
-        print(dongu," loop")
+        print(dongu, " loop")
         if dongu > 120:
             print("elmabahçe")
             subprocess.Popen("python3 masa1.py", shell=True)

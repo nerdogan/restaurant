@@ -79,7 +79,7 @@ def yenile():
         print(row[0], row[1], row[2])
         curmy.execute("update personelgc SET mail='1' where id=%s ",(a4,))
         conmy.commit()
-        ttim.sleep(1)
+        ttim.sleep(3)
 
 
 
