@@ -1,3 +1,4 @@
+# -*- coding:utf8 -*-
 from zk import ZK, const
 
 import MySQLdb as mdb
