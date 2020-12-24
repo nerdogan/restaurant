@@ -1,13 +1,5 @@
-# -*- coding: utf8 -*-
-from __future__ import print_function
-__author__ = 'NAMIK'
-import sys
-#sys.path.append("/usr/local/lib/python3.5/dist-packages/zklib")
-import subprocess
+from zk import ZK, const
 
-from zklib import zklib, zkconst
-import time
-#import zkconst
 import MySQLdb as mdb
 from socket import *
 
@@ -18,44 +10,34 @@ curmy = conmy.cursor()
 curmy.execute("SET NAMES UTF8")
 curmy.execute("SET character_set_client=utf8")
 
-zk = zklib.ZKLib("192.168.2.224", 4370)
+zk = ZK('192.168.2.224', port=4370, timeout=5, password=0, force_udp=False, ommit_ping=False)
+conn = zk.connect()
+# disable device, this method ensures no activity on the device while the process is run
+conn.disable_device()
+# another commands will be here!
+i = 0
+attendance = conn.get_attendance()
+print(len(attendance))
+print("Giriş çıkış listesi:")
 
-ret = zk.connect()
-print("Bağlantı:", ret)
+if ( attendance ):
+    for lattendance in attendance:
 
-if ret == True:
-    print("Cihaz Devredışı", zk.disableDevice())
+        print(" %s, %s , %s" % (lattendance.timestamp.date(), lattendance.timestamp.time(), lattendance.user_id))
+        saatt =str(lattendance.timestamp.time())
+        tarihh= str(lattendance.timestamp.date())
+        select = 'INSERT INTO personelgc(enrolgc,stringgc,tarih,saat) VALUES(' + lattendance.user_id + ',"' + tarihh + saatt + '","' + tarihh + '","' + saatt + '") ON DUPLICATE key UPDATE saat="' + saatt + '"'
 
-    attendance = zk.getAttendance()
-    print(len(attendance))
+        curmy.execute(select)
+        conmy.commit()
 
-    print("Giriş çıkış listesi:")
+    #print("Clear Attendance:", conn.clear_attendance())
 
-    if ( attendance ):
-        for lattendance in attendance:
-            if lattendance[1] == 15:
-                state = 'Check In'
-            elif lattendance[1] == 0:
-                state = 'Check Out'
-            else:
-                state = 'Undefined'
+    print("Cihaz saati:", conn.get_time())
 
-            print(" %s, %s , %s,   %s" % (lattendance[2].date(), lattendance[2].time(), lattendance[0], state))
-            saatt =str(lattendance[2].time())
-            tarihh= str(lattendance[2].date())
-            select = 'INSERT INTO personelgc(enrolgc,stringgc,tarih,saat) VALUES(' + lattendance[
-                0] + ',"' + tarihh + saatt + '","' + tarihh + '","' + saatt + '") ON DUPLICATE key UPDATE saat="' + saatt + '"'
+    print("Cihaz Devrede", conn.enable_device())
 
-            curmy.execute(select)
-            conmy.commit()
-
-    #print ("Clear Attendance:", zk.clearAttendance())
-
-    print("Cihaz saati:", zk.getTime())
-
-    print("Cihaz Devrede", zk.enableDevice())
-
-    print("Bağlantı kesildi.", zk.disconnect())
+    print("Bağlantı kesildi.", conn.disconnect())
     print(len(attendance))
 
 #subprocess.Popen('python opencvvv1.py')
