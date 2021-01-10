@@ -19,7 +19,7 @@ gunliste=[]
 
 ayliste=[]
 
-tarihh="2020-06-01"
+tarihh="2020-12-01"
 interval_num=0
 dt= datetime.strptime(tarihh, '%Y-%m-%d').date()
 
@@ -40,11 +40,11 @@ def last_day_of_month( any_day):
     return (next_month - timedelta(days=next_month.day)).day
 
 
-bul =curmy.execute("select a.adsoyad,tarih,saat,enrolgc from personelgc a inner join personel b ON a.enrolgc=b.kod where tarih between '2020-06-01' and '2020-09-01'  AND b.bolum='S' order by enrolgc,tarih,saat")
+bul =curmy.execute("select a.adsoyad,tarih,saat,enrolgc from personelgc a inner join personel b ON a.enrolgc=b.kod where tarih between '2020-12-01' and '2021-01-01'  AND b.bolum='S' order by enrolgc,tarih,saat")
 bul=curmy.fetchall()
 
 #for day in range(1,last_day_of_month(tarihh)+1):
-for day in range(1, 93):
+for day in range(1, 32):
     interval_type = 'days'
     one_day = timedelta(**{interval_type: interval_num})
     dt1=dt+one_day
@@ -77,11 +77,11 @@ for b in (bul):
         sat=0
         c=b[3]
 
-        tarihh = "2020-06-01"
+        tarihh = "2020-12-01"
         interval_num = 0
         dt = datetime.strptime(tarihh, '%Y-%m-%d').date()
 
-        for day in range(1, 93):
+        for day in range(1, 32):
             interval_type = 'days'
             one_day = timedelta(**{interval_type: interval_num})
             dt1 = dt + one_day
