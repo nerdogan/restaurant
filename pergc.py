@@ -97,11 +97,11 @@ while True:
     ttim.sleep(10)
     yenile()
     conmy.commit()
-    a,b = divmod(ab,50)
+    a,b = divmod(ab,5)
 
     if b==0:
-        pass
-        #subprocess.Popen('python twgonder.py')
+        subprocess.Popen('python3 yemeksepeti.py', shell=True)
+        subprocess.Popen('python3 getiryemek.py', shell=True)
     print("_______________________________________________________________", ab)
     ttim.sleep(60)
 
