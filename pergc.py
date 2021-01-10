@@ -90,7 +90,7 @@ def yenile():
 while True:
     ab += 1
 
-    subprocess.Popen("/home/nerdogan/PycharmProjects/restaurant/venv/bin/python persatt.py",shell=True)
+    subprocess.Popen("python3 persatt.py",shell=True)
 
 #    subprocess.Popen("python3 getiryemek.py",shell=True)
 
