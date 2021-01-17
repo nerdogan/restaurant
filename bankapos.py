@@ -19,8 +19,8 @@ ana['Tarih']=pd.to_datetime(ana['Tarih'],dayfirst=True)
 # Verilen tarih aralığındaki kart komisyonlarını günlük ve toplamının bulunması excel dosyası olarak kaydeder
 har=ana[ana['Açıklama'].str.contains('11781999-651', regex=False)==True]
 filt=har[har.columns[2]]<0
-filt1=har['Tarih'].dt.date >= pd.to_datetime("2020-11-01")
-filt2=har['Tarih'].dt.date <= pd.to_datetime("2020-11-30")
+filt1=har['Tarih'].dt.date >= pd.to_datetime("2020-12-01")
+filt2=har['Tarih'].dt.date <= pd.to_datetime("2020-12-31")
 df=(har[filt&filt1&filt2])
 df=df.groupby(df.Tarih.dt.date)[df.columns[2]].sum()
 print (df)
@@ -30,8 +30,8 @@ export_excel = df.to_excel (r'C:\Users\namik\OneDrive\Desktop\gunlukkomisyon.xls
 # Verilen tarih aralığındaki kart komisyonlarını günlük ve toplamının bulunması excel dosyası olarak kaydeder
 har=ana[ana['Açıklama'].str.contains('243000|Aktarım|Artırım', regex=True)==False]
 filt=har[har.columns[2]]<0
-filt1=har['Tarih'].dt.date >= pd.to_datetime("2020-11-01")
-filt2=har['Tarih'].dt.date <= pd.to_datetime("2020-11-30")
+filt1=har['Tarih'].dt.date >= pd.to_datetime("2020-12-01")
+filt2=har['Tarih'].dt.date <= pd.to_datetime("2020-12-31")
 df=(har[filt&filt1&filt2])
 print (df)
 print (df.sum())
