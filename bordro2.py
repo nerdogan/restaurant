@@ -19,7 +19,13 @@ gunliste=[]
 
 ayliste=[]
 
-tarihh="2021-02-21"
+tarihh="2021-07-01"
+tarihson="2021-07-31"
+dtilk= datetime.strptime(tarihh, '%Y-%m-%d').date()
+dtson= datetime.strptime(tarihson, '%Y-%m-%d').date()
+fark=(dtson-dtilk).days+2
+print(fark)
+
 interval_num=0
 dt= datetime.strptime(tarihh, '%Y-%m-%d').date()
 
@@ -38,16 +44,17 @@ def last_day_of_month( any_day):
     next_month = any_day.replace(day=28) + timedelta(days=4)  # this will never fail
     return (next_month - timedelta(days=next_month.day)).day
 
-
-bul =curmy.execute("select adsoyad,tarih,saat,enrolgc from personelgc where tarih between '2021-02-21' and '2021-04-11'  order by enrolgc,tarih,saat")
+sql=("select b.adsoyad,tarih,saat,enrolgc from personelgc a  inner join personel b ON a.enrolgc=b.kod where tarih between %s and %s AND b.bolum='S' order by enrolgc,tarih,saat")
+bul =curmy.execute(sql,[tarihh,tarihson])
 bul=curmy.fetchall()
 print (bul)
 #for day in range(1,last_day_of_month(tarihh)+1):
-for day in range(1, 51):
+for day in range(1, fark):
     interval_type = 'days'
     one_day = timedelta(**{interval_type: interval_num})
     dt1=dt+one_day
-    t=    tt1=str(t[0])+"-"+str(t[1])+"-"+str(t[2])
+    t=dt1.timetuple()
+    tt1=str(t[0])+"-"+str(t[1])+"-"+str(t[2])
 
     tt1= datetime.strptime(tt1, '%Y-%m-%d').date()
     gunliste.append(tt1)
@@ -78,11 +85,11 @@ for b in (bul):
         c=b[3]
 
 
-        tarihh = "2021-02-21"
+        #tarihh = "2021-02-21"
         interval_num = 0
         dt = datetime.strptime(tarihh, '%Y-%m-%d').date()
 
-        for day in range(1, 51):
+        for day in range(1, fark):
             interval_type = 'days'
             one_day = timedelta(**{interval_type: interval_num})
             dt1 = dt + one_day
@@ -168,7 +175,7 @@ cliste.append(ayliste)
 
 # listeleme ve pdf oluşturma
 
-c = canvas.Canvas("...TAM" + str(tarihh) + str(tar)+".pdf")
+c = canvas.Canvas(".TAM " + str(tarihh) +' '+ str(tarihson)+".pdf")
 
 pdfmetrics.registerFont(TTFont('Verdana', 'Verdana.ttf'))
 print(c.getAvailableFonts())
