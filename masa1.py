@@ -14,7 +14,7 @@ print (tgtIP)
 conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8',port=30000)
 curmy = conmy.cursor()
 con = fdb.connect(
-    dsn='nen.duckdns.org/30500:D:\RESTO_2015\DATA\DATABASE.GDB',
+    dsn='nen.duckdns.org/30500:D:\RESTOPOS\DATA\DATABASE.GDB',
     user='sysdba', password='masterkey',
 
     charset='UTF8' # specify a character set for the connection #

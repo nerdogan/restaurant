@@ -32,13 +32,14 @@ if ( attendance ):
         curmy.execute(select)
         conmy.commit()
 
-    #print("Clear Attendance:", conn.clear_attendance())
 
-    print("Cihaz saati:", conn.get_time())
+   # print("Clear Attendance:", conn.clear_attendance())
 
-    print("Cihaz Devrede", conn.enable_device())
+print("Cihaz saati:", conn.get_time())
 
-    print("Bağlantı kesildi.", conn.disconnect())
-    print(len(attendance))
+print("Cihaz Devrede", conn.enable_device())
+
+print("Bağlantı kesildi.", conn.disconnect())
+print(len(attendance))
 
 #subprocess.Popen('python opencvvv1.py')

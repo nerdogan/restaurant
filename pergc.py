@@ -72,9 +72,8 @@ def yenile():
         appnot=a3+u" "+a2+u"  "+a1
 
 
-        r=requests.post(url='https://api.telegram.org/bot{0}/sendMessage'.format(token),
-                      data={'chat_id': -362841907, 'text': appnot}).json()
-        print (r)
+        rq=requests.post(url='https://api.telegram.org/bot{0}/sendMessage'.format(token),  data={'chat_id': -362841907, 'text': appnot}).json()
+        print (rq)
 
         print(row[0], row[1], row[2])
         curmy.execute("update personelgc SET mail='1' where id=%s ",(a4,))
@@ -90,20 +89,24 @@ def yenile():
 while True:
     ab += 1
 
-    subprocess.Popen("python3 persatt.py",shell=True)
-
-#    subprocess.Popen("python3 getiryemek.py",shell=True)
-
-    ttim.sleep(10)
+    ttim.sleep(1)
     yenile()
     conmy.commit()
-    a,b = divmod(ab,5)
+    a,b = divmod(ab,1)
 
     if b==0:
-        subprocess.Popen('python3 yemeksepeti.py', shell=True)
-        subprocess.Popen('python3 getiryemek.py', shell=True)
+        pass
+    subprocess.Popen("python3 persatt.py", shell=True)
+
+  #  subprocess.Popen('python3 yemeksepeti.py', shell=True)
+    ttim.sleep(10)
+ #   subprocess.Popen('python3 getiryemek.py', shell=True)
+    ttim.sleep(90)
+#    subprocess.Popen('python3 siparisyazdir.py', shell=True)
+    ttim.sleep(5)
+#    subprocess.Popen('python3 deneme.py', shell=True)
+    ttim.sleep(15)
     print("_______________________________________________________________", ab)
-    ttim.sleep(60)
 
 
 

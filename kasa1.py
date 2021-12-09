@@ -16,7 +16,7 @@ print (tgtIP)
 conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8',port=30000)
 curmy = conmy.cursor()
 con = fdb.connect(
-    dsn='nen.duckdns.org/30500:D:\RESTO_2015\DATA\DATABASE.GDB',
+    dsn='nen.duckdns.org/30500:D:\RESTOPOS\DATA\DATABASE.GDB',
     user='sysdba', password='masterkey',
 
     charset='UTF8' # specify a character set for the connection #
@@ -68,6 +68,8 @@ def yenile():
             kno = 108
         if row[6] == "YSONLINE":
             kno = 109
+        if row[6] == "TRENDYOL":
+            kno = 110
 
         curmy.execute("insert ignore into kasa  (posid,aciklama,tutar,belgeno,muhkod,tarih,kasano,islemid) values (%s,%s,%s,%s,%s,%s,%s,%s)",
                       (row[0], row[1], tut, row[4], row[5], tt2,kno,row[7]))
@@ -83,7 +85,7 @@ while True:
     dt=datetime.now()-timedelta(hours=5)
     interval_type = 'days'
 
-    if interval_num==3:
+    if interval_num==2:
         break
     one_day = timedelta(**{interval_type: interval_num})
     dt2=dt-one_day

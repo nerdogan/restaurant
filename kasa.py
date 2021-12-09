@@ -49,6 +49,8 @@ def yenile():
             kno = 108
         if row[6] == "YSONLINE":
             kno = 109
+        if row[6] == "TRENDYOL":
+            kno = 110
 
         print('%s masasinda %s TL  %s urun ' % (row[4], row[1], row[2]))
         curmy.execute(
@@ -84,7 +86,7 @@ while True:
         conmy = mdb.connect(tgtIP, 'nen', '654152', 'bishop', charset='utf8', port=30000)
         curmy = conmy.cursor()
         con = fdb.connect(
-            dsn='nen.duckdns.org/30500:D:\RESTO_2015\DATA\DATABASE.GDB',
+            dsn='nen.duckdns.org/30500:D:\RESTOPOS\DATA\DATABASE.GDB',
             user='sysdba', password='masterkey',
             charset='UTF8'  # specify a character set for the connection #
         )
