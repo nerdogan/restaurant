@@ -41,6 +41,11 @@ def yenile():
         tut=row[3]
         kno=100
 
+        if row[8] is None:
+            aciklama=""
+        else:
+            aciklama=" "+row[8]
+
         # harcamalar
         if row[3] < 0:
             kno = 111
@@ -72,7 +77,7 @@ def yenile():
             kno = 110
 
         curmy.execute("insert ignore into kasa  (posid,aciklama,tutar,belgeno,muhkod,tarih,kasano,islemid) values (%s,%s,%s,%s,%s,%s,%s,%s)",
-                      (row[0], row[1]+row[8], tut, row[4], row[5], tt2,kno,row[7]))
+                      (row[0], row[1]+aciklama, tut, row[4], row[5], tt2,kno,row[7]))
 
         ab=ab+tut
 
