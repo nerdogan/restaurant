@@ -33,7 +33,7 @@ def yenile():
 
     print (" ")
 
-    selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,n_05,kasa,ISLEM_KOD  FROM YEDEK_RAPOR  where  (plu_no>899 and plu_no<909 or plu_no=2000) and tarih='" + tt1 + "' and urun_turu>0 and urun_turu<50"
+    selectt1="SELECT plu_no,urun_adi,adet,tutar,masa_no,n_05,kasa,ISLEM_KOD,ACIKLAMA  FROM YEDEK_RAPOR  where  (plu_no>899 and plu_no<909 or plu_no=2000) and tarih='" + tt1 + "' and urun_turu>0 and urun_turu<50"
  #print selectt1
     ab=0
     aa=cur.execute(selectt1 )
@@ -72,7 +72,7 @@ def yenile():
             kno = 110
 
         curmy.execute("insert ignore into kasa  (posid,aciklama,tutar,belgeno,muhkod,tarih,kasano,islemid) values (%s,%s,%s,%s,%s,%s,%s,%s)",
-                      (row[0], row[1], tut, row[4], row[5], tt2,kno,row[7]))
+                      (row[0], row[1]+row[8], tut, row[4], row[5], tt2,kno,row[7]))
 
         ab=ab+tut
 
