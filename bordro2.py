@@ -19,7 +19,7 @@ gunliste=[]
 
 ayliste=[]
 
-tarihh="2020-12-21"
+tarihh="2021-02-21"
 interval_num=0
 dt= datetime.strptime(tarihh, '%Y-%m-%d').date()
 
@@ -39,16 +39,15 @@ def last_day_of_month( any_day):
     return (next_month - timedelta(days=next_month.day)).day
 
 
-bul =curmy.execute("select adsoyad,tarih,saat,enrolgc from personelgc where tarih between '2020-12-21' and '2021-01-21'  order by enrolgc,tarih,saat")
+bul =curmy.execute("select adsoyad,tarih,saat,enrolgc from personelgc where tarih between '2021-02-21' and '2021-04-11'  order by enrolgc,tarih,saat")
 bul=curmy.fetchall()
 print (bul)
 #for day in range(1,last_day_of_month(tarihh)+1):
-for day in range(1, 32):
+for day in range(1, 51):
     interval_type = 'days'
     one_day = timedelta(**{interval_type: interval_num})
     dt1=dt+one_day
-    t=dt1.timetuple()
-    tt1=str(t[0])+"-"+str(t[1])+"-"+str(t[2])
+    t=    tt1=str(t[0])+"-"+str(t[1])+"-"+str(t[2])
 
     tt1= datetime.strptime(tt1, '%Y-%m-%d').date()
     gunliste.append(tt1)
@@ -79,11 +78,11 @@ for b in (bul):
         c=b[3]
 
 
-        tarihh = "2020-12-21"
+        tarihh = "2021-02-21"
         interval_num = 0
         dt = datetime.strptime(tarihh, '%Y-%m-%d').date()
 
-        for day in range(1, 32):
+        for day in range(1, 51):
             interval_type = 'days'
             one_day = timedelta(**{interval_type: interval_num})
             dt1 = dt + one_day
@@ -235,8 +234,8 @@ for ayliste in cliste:
     c.drawString(370, 800 - (15 * (bb + 1)), cevirgunsaat(toplam))
     curmy.execute('select maas from personel where kod='+str(gunliste[5])+' ')
     mas =curmy.fetchone()
-    print(int(mas[0]/(30*9*60)*toplam))
-    c.drawString(520, 800 - (15 * (bb + 1)), str(int(mas[0]/(30*9*60)*toplam))+" TL")
+    #print(int(mas[0]/(30*9*60)*toplam))
+    #c.drawString(520, 800 - (15 * (bb + 1)), str(int(mas[0]/(30*9*60)*toplam))+" TL")
 
     c.setFont("Courier", 60)
     # This next setting with make the text of our
