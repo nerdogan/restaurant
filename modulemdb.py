@@ -19,7 +19,7 @@ import nenraconfig
 
 
 tgtIP = gethostbyname(nenraconfig._GetOption('server'))
-
+tgtIP='192.168.2.251'
 print(tgtIP)
 class Myddb():
     def __init__(self):

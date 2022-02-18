@@ -35,7 +35,10 @@ def yenile():
     ab=0
     aa=cur.execute(selectt1 )
     for row in aa:
-        if row[2]<0:
+        print(row)
+        if row[2]==None:
+            continue
+        if row[2]<0 :
             continue
 
 
