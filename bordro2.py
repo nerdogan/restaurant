@@ -19,8 +19,8 @@ gunliste=[]
 
 ayliste=[]
 
-tarihh="2021-07-01"
-tarihson="2021-07-31"
+tarihh="2020-11-01"
+tarihson="2022-01-01"
 dtilk= datetime.strptime(tarihh, '%Y-%m-%d').date()
 dtson= datetime.strptime(tarihson, '%Y-%m-%d').date()
 fark=(dtson-dtilk).days+2
