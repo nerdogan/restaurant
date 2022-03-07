@@ -82,7 +82,7 @@ def yenile():
 
 while True:
     try:
-        dt = datetime.now() - timedelta(hours=5)
+        dt = datetime.now() - timedelta(hours=7)
         t = dt.timetuple()
         tt1 = str(t[2]) + "." + str(t[1]) + "." + str(t[0])
         tt2 = str(t[0]) + "-" + str(t[1]) + "-" + str(t[2])
@@ -110,7 +110,7 @@ while True:
 
         dongu += 1
         print(dongu, " loop")
-        if dongu > 120:
+        if dongu > 200:
             print("elmabahçe")
             subprocess.Popen("python3 masa1.py", shell=True)
             ttim.sleep(10)

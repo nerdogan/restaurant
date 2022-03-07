@@ -12,8 +12,8 @@ while True:
 
     subprocess.Popen('python3 yemeksepeti.py', shell=True)
     ttim.sleep(40)
-    subprocess.Popen('python3 getiryemek.py', shell=True)
-    ttim.sleep(50)
+   # subprocess.Popen('python3 getiryemek.py', shell=True)
+   # ttim.sleep(50)
     subprocess.Popen('python3 getiryemek2.py', shell=True)
     ttim.sleep(50)
     #    subprocess.Popen('python3 siparisyazdir.py', shell=True)
