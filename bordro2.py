@@ -19,11 +19,11 @@ gunliste=[]
 
 ayliste=[]
 
-tarihh="2020-11-01"
+tarihh="2021-07-01"
 tarihson="2022-01-01"
 dtilk= datetime.strptime(tarihh, '%Y-%m-%d').date()
 dtson= datetime.strptime(tarihson, '%Y-%m-%d').date()
-fark=(dtson-dtilk).days+2
+fark=(dtson-dtilk).days+1
 print(fark)
 
 interval_num=0
@@ -31,13 +31,22 @@ dt= datetime.strptime(tarihh, '%Y-%m-%d').date()
 
 
 def cevirgunsaat(time):
-
+    if time<0:
+        time=time*(-1)
+        day = time // (9 * 60)
+        time = time % (9 * 60)
+        hour = time // 60
+        time %= 60
+        minutes = time
+        return ("Eksi -%d gün %d saat %d dk" % (day, hour, minutes))
     day = time // (9 * 60)
     time = time % (9 * 60)
     hour = time // 60
     time %= 60
     minutes = time
-    return (" %d gün %d saat %d dk" % (day, hour, minutes))
+    return ("Artı +%d gün %d saat %d dk" % (day, hour, minutes))
+
+
 
 def last_day_of_month( any_day):
     any_day = datetime.strptime(any_day, '%Y-%m-%d').date()
@@ -205,6 +214,9 @@ for ayliste in cliste:
         bb = bb + 1
 
         if (str(gunliste[3])).isalpha():
+            if gunliste[3]=="EKSİK":
+                toplam = toplam -240
+
             pass
         else:
             toplam=toplam+int(gunliste[3])
