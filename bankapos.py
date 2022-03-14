@@ -5,8 +5,8 @@ from PyQt5 import QtGui, QtCore,QtWidgets
 app = QtWidgets.QApplication(sys.argv)
 fname = QtWidgets.QFileDialog.getOpenFileName()
 print(fname)
-tarih1="2022-01-01"
-tarih2="2022-01-31"
+tarih1="2022-02-01"
+tarih2="2022-02-28"
 
 
 pd.set_option('display.max_columns', 500)
