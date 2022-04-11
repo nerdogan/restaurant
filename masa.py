@@ -26,10 +26,9 @@ strt="CREATE TABLE `ciro` (`id` int(11) unsigned NOT NULL AUTO_INCREMENT,  `masa
 curmy.execute(strt)
 conmy.commit()
 """
+
 def yenile():
-
-
-
+    selectt = "SELECT plu_no,urun_adi,adet,tutar,masa_no,n_05,kisi_sayisi,saat,hesap,departman,grup3 FROM DATA WHERE  TARIH='" + tt1 + "' and plu_no<1000 and urun_turu > 0 "
     ab=0
     aa=cur.execute(selectt)
 
@@ -69,6 +68,7 @@ def yenile():
     print("toplam       :", ab)
     conmy.commit()
 
+    print(datetime.now())
     print("--------------------------------------------------------------------------------- ")
     """   ab=0
     aa=cur.execute(slectaylik )
