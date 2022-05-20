@@ -106,10 +106,11 @@ while True:
         tt3=tt2
         curmy.execute(strt)
         son=curmy.execute("select max(id) from ciro")
-        son1="ALTER TABLE ciro AUTO_INCREMENT ="+str(son)
-        curmy.execute(son1)
+        #son1="ALTER TABLE ciro AUTO_INCREMENT ="+str(son)
+        #curmy.execute(son1)
         conmy.commit()
         conmy.close()
-    except:
+    except Exception as e:
+        print(e)
         ttim.sleep(60)
         pass
