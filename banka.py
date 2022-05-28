@@ -5,8 +5,8 @@ from PyQt5 import QtGui, QtCore,QtWidgets
 app = QtWidgets.QApplication(sys.argv)
 fname = QtWidgets.QFileDialog.getOpenFileName()
 print(fname)
-tarih1="2022-02-01"
-tarih2="2022-02-28"
+tarih1="2022-04-01"
+tarih2="2022-04-30"
 
 
 pd.set_option('display.max_columns', 500)
@@ -37,5 +37,5 @@ filt1=har['Tarih'].dt.date >= pd.to_datetime(tarih1)
 filt2=har['Tarih'].dt.date <= pd.to_datetime(tarih2)
 df=(har[filt&filt1&filt2])
 print (df)
-print (df.sum())
+#print (df.sum())
 export_excel = df.to_excel (r'C:\Users\bisho\OneDrive\Desktop\bankaçıkış'+tarih2+'.xlsx', index =None, header=True)
