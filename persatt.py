@@ -4,7 +4,7 @@ from zk import ZK, const
 import MySQLdb as mdb
 from socket import *
 
-tgtIP = gethostbyname('nen.duckdns.org')
+tgtIP = gethostbyname('78.188.173.248')
 print(tgtIP)
 conmy = mdb.connect(tgtIP, "nen","654152", "bishop",charset='utf8',port=30000)
 curmy = conmy.cursor()
@@ -32,8 +32,7 @@ if ( attendance ):
         curmy.execute(select)
         conmy.commit()
 
-
-   # print("Clear Attendance:", conn.clear_attendance())
+    #print("Clear Attendance:", conn.clear_attendance())
 
 print("Cihaz saati:", conn.get_time())
 

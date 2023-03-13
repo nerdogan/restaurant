@@ -58,6 +58,7 @@ def yenile():
             kno = 110
 
         print('%s masasinda %s TL  %s urun ' % (row[4], row[1], row[2]))
+        print (row[0], aciklama, tut, row[4], row[5], tt2, kno, row[7])
         curmy.execute(
             "insert ignore into kasa  (posid,aciklama,tutar,belgeno,muhkod,tarih,kasano,islemid) values (%s,%s,%s,%s,%s,%s,%s,%s)",
             (row[0], aciklama, tut, row[4], row[5], tt2, kno, row[7]))
@@ -86,12 +87,12 @@ while True:
         t = dt.timetuple()
         tt1 = str(t[2]) + "." + str(t[1]) + "." + str(t[0])
         tt2 = str(t[0]) + "-" + str(t[1]) + "-" + str(t[2])
-        tgtIP = gethostbyname('nen.duckdns.org')
+        tgtIP = gethostbyname('78.188.173.248')
         print(tgtIP)
         conmy = mdb.connect(tgtIP, 'nen', '654152', 'bishop', charset='utf8', port=30000)
         curmy = conmy.cursor()
         con = fdb.connect(
-            dsn='nen.duckdns.org/30500:D:\RESTOPOS\DATA\DATABASE.GDB',
+            dsn='78.188.173.248/30500:D:\RESTOPOS\DATA\DATABASE.GDB',
             user='sysdba', password='masterkey',
             charset='UTF8'  # specify a character set for the connection #
         )

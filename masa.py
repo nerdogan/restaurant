@@ -87,7 +87,7 @@ while True:
         t=dt.timetuple()
         tt1=str(t[2])+"."+str(t[1])+"."+str(t[0])
         tt2=str(t[0])+"-"+str(t[1])+"-"+str(t[2])
-        tgtIP = gethostbyname('nen.duckdns.org')
+        tgtIP = gethostbyname('78.188.173.248')
         print(tgtIP)
 
         conmy = mdb.connect(tgtIP, 'nen','654152', 'bishop',charset='utf8',port=30000)

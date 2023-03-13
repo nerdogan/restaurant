@@ -42,7 +42,7 @@ def send_email(user, pwd, recipient, subject, body):
         print("failed to send mail")
 
 
-tgtIP = gethostbyname('nen.duckdns.org')
+tgtIP = gethostbyname('78.188.173.248')
 print(tgtIP)
 conmy = mdb.connect(tgtIP, "nen","654152", "bishop",charset='utf8',port=30000)
 curmy = conmy.cursor()
