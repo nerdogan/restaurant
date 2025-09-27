@@ -11,15 +11,10 @@ import nenraconfig
 
 token=nenraconfig._GetOption2('token')
 
-
-url1 = 'https://pushmeapi.jagcesar.se'
-
 ab=0
 
 
 def send_email(user, pwd, recipient, subject, body):
-
-
     gmail_user = user
     gmail_pwd = pwd
     FROM = user
@@ -42,32 +37,33 @@ def send_email(user, pwd, recipient, subject, body):
         print("failed to send mail")
 
 
-tgtIP = gethostbyname('78.188.173.248')
+#tgtIP = gethostbyname('78.188.173.248')
+tgtIP="192.168.2.251"
 print(tgtIP)
-conmy = mdb.connect(tgtIP, "nen","654152", "bishop",charset='utf8',port=30000)
-curmy = conmy.cursor()
-curmy.execute("SET NAMES UTF8")
-curmy.execute("SET character_set_client=utf8")
 
 
 selectt="SELECT adsoyad,saat,tarih,id FROM personelgc where mail='0' "
 
 
+#subprocess.Popen("venv/bin/python3 bordro2.py", shell=True)
+
 def yenile():
-
-
+    conmy = mdb.connect(tgtIP, "nen", "654152", "bishop", charset='utf8', port=3306)
+    curmy = conmy.cursor()
+    curmy.execute("SET NAMES UTF8")
+    curmy.execute("SET character_set_client=utf8")
     curmy.execute(selectt)
     aa=curmy.fetchall()
     if len(aa)==0:
         print("Yeni hareket yok !!")
 
     for row in aa:
-        a1=row[0]
+        a1=str(row[0])
         a2=str(row[1])
         a3=str(row[2])
         a4=(row[3])
 
-        bodyy="\n\n"+a3+" tarihinde saat "+a2+" personelimiz "+a1+" giriş-çıkış yapmıştır. \n\nBilgilerinize\n NAMIK ERDOĞAN"
+      #  bodyy="\n\n"+a3+" tarihinde saat "+a2+" personelimiz "+a1+" giriş-çıkış yapmıştır. \n\nBilgilerinize\n NAMIK ERDOĞAN"
       # send_email('erdogannamik@gmail.com','qazxcv654152','orhangunendii@gmail.com','personel giriş çıkış bilgilendirme',bodyy)
         appnot=a3+u" "+a2+u"  "+a1
 
@@ -80,9 +76,7 @@ def yenile():
         conmy.commit()
         ttim.sleep(3)
 
-
-
-
+    conmy.close()
 
 
 
@@ -90,18 +84,19 @@ while True:
     ab += 1
 
     ttim.sleep(1)
-    yenile()
-    conmy.commit()
-    a,b = divmod(ab,1)
+    try:
+        yenile()
+    except Exception as error:
+        print(error)
 
-    if b==0:
-        pass
-    subprocess.Popen("python3 persatt.py", shell=True)
+    a,b = divmod(ab,1440)
 
-  #  subprocess.Popen('python3 yemeksepeti.py', shell=True)
+    subprocess.Popen("venv/bin/python3 persatt.py", shell=True)
+
+  #  subprocess.Popen('venv/bin/python3 yemeksepeti.py', shell=True)
     ttim.sleep(10)
  #   subprocess.Popen('python3 getiryemek.py', shell=True)
-    ttim.sleep(90)
+    ttim.sleep(29)
 #    subprocess.Popen('python3 siparisyazdir.py', shell=True)
     ttim.sleep(5)
 #    subprocess.Popen('python3 deneme.py', shell=True)

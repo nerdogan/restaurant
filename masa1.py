@@ -79,9 +79,9 @@ while True:
     conmy.commit()
 conmy.close()
 
-subprocess.Popen("""mysqldump -h 192.168.2.251 -u nen --password=654152  bishop > /home/nerdogan/yedek/"""+tt2+"""bishop.sql""",shell=True)
+subprocess.Popen("""mysqldump  -h 192.168.2.251 -u nen --password=654152  bishop > /home/nerdogan/yedek/"""+tt2+"""bishop.sql""",shell=True)
 
-subprocess.Popen("""mysqldump -h 192.168.2.251 -u nen --password=654152  test > /home/nerdogan/yedek/"""+tt2+"""test.sql""",shell=True)
+subprocess.Popen("""mysqldump  -h 192.168.2.251 -u nen --password=654152  test > /home/nerdogan/yedek/"""+tt2+"""test.sql""",shell=True)
 
 
 

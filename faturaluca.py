@@ -2,17 +2,17 @@
 __author__ = 'NAMIK'
 import pymssql
 import sys
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui,QtWidgets
 from mainwindow import MainWindow
 
-app = QtGui.QApplication(sys.argv)
+app = QtWidgets.QApplication(sys.argv)
 app.processEvents()
 class Mmdb():
     def __init__(self):
 
 
         # connect to the database
-        self.conn = pymssql.connect("SERVERPC","sa","QaZ123WsX","RESTO_2016")
+        self.conn = pymssql.connect("192.168.2.251","sa","QaZ123WsX","RESTO_2016")
         # create a cursor
         self.cur = self.conn.cursor()
     def cek(self,sql):
@@ -36,7 +36,7 @@ def kontrol(girdi):
 
 
 def OK(self):
-    print 'OK pressed.'
+    print('OK pressed.')
     belgeno=str(mainWindow.lineEdit.text())
     sql="    select a.Fis_No,a.Fis_Tarihi,b.Unvani from STOK_Fis_Baslik  a   inner join CARI_Karti b on a.Cari_No=b.Cari_No and Belge_No='"+belgeno+"'"
     sonuc= Mmdb1.cek(sql)
@@ -56,7 +56,7 @@ def OK(self):
             break
     cc=(sonuc[0][1]).strftime("%d.%m.%Y")
 
-    print sonuc[0][0], cc,bb
+    print(sonuc[0][0], cc, bb)
 
     for row in sonuc1:
 
@@ -76,8 +76,7 @@ def OK(self):
 
         dosya.write("\n")
 
-
-    print mainWindow.lineEdit.text()
+    print(mainWindow.lineEdit.text())
     mainWindow.lineEdit_2.setText(str(sonuc[0][0])+"   "+cc+"   "+bb)
     mainWindow.lineEdit.selectAll()
 

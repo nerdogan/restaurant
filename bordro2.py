@@ -8,10 +8,15 @@ from reportlab.pdfgen import canvas
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.rl_settings import *
+import requests
+import nenraconfig
+
+token=nenraconfig._GetOption2('token')
+
 
 tgtIP = gethostbyname('nen.duckdns.org')
 print(tgtIP)
-conmy = mdb.connect(tgtIP, "nen","654152", "bishop",charset='utf8',port=30000)
+conmy = mdb.connect("192.168.2.251", "nen","654152", "bishop",charset='utf8',port=3306)
 curmy = conmy.cursor()
 curmy.execute("SET NAMES UTF8")
 curmy.execute("SET character_set_client=utf8")
@@ -19,8 +24,8 @@ gunliste=[]
 
 ayliste=[]
 
-tarihh="2022-03-01"
-tarihson="2022-04-01"
+tarihh="2024-08-01"
+tarihson="2024-12-11"
 dtilk= datetime.strptime(tarihh, '%Y-%m-%d').date()
 dtson= datetime.strptime(tarihson, '%Y-%m-%d').date()
 fark=(dtson-dtilk).days+1
@@ -184,7 +189,7 @@ cliste.append(ayliste)
 
 # listeleme ve pdf oluşturma
 
-c = canvas.Canvas(".TAM " + str(tarihh) +' '+ str(tarihson)+".pdf")
+c = canvas.Canvas("a.TAM " + str(tarihh) +' '+ str(tarihson)+".pdf")
 
 pdfmetrics.registerFont(TTFont('Verdana', 'Verdana.ttf'))
 print(c.getAvailableFonts())
@@ -215,7 +220,15 @@ for ayliste in cliste:
 
         if (str(gunliste[3])).isalpha():
             if gunliste[3]=="EKSİK":
-                toplam = toplam -240
+                #toplam = toplam -240
+
+                if datetime.now().date() > (gunliste[0]):
+
+                    # nen id 839088426  dlk id 1445403534
+                    appnot=str(str(gunliste[5])+" "+gunliste[4]+" "+str(gunliste[0])+" "+str(gunliste[1])+" "+str(gunliste[2])+" "+str(gunliste[3]))
+                    rq = requests.post(url='https://api.telegram.org/bot{0}/sendMessage'.format(token),
+                                       data={'chat_id': 839088426, 'text': appnot}).json()
+                    print(rq)
 
             pass
         else:
@@ -248,11 +261,11 @@ for ayliste in cliste:
 
 
     c.setFont("Verdana", 11)
-    c.drawString(160, 800 - (15 * (bb + 1)), "Toplam ")
-    c.drawString(275, 800 - (15 * (bb + 1)), str(toplam)+" dk")
-    c.drawString(370, 800 - (15 * (bb + 1)), cevirgunsaat(toplam))
-    curmy.execute('select maas from personel where kod='+str(gunliste[5])+' ')
-    mas =curmy.fetchone()
+    #c.drawString(160, 800 - (15 * (bb + 1)), "Toplam ")
+    #c.drawString(275, 800 - (15 * (bb + 1)), str(toplam)+" dk")
+    #c.drawString(370, 800 - (15 * (bb + 1)), cevirgunsaat(toplam))
+    #curmy.execute('select maas from personel where kod='+str(gunliste[5])+' ')
+    #mas =curmy.fetchone()
     #print(int(mas[0]/(30*9*60)*toplam))
     #c.drawString(520, 800 - (15 * (bb + 1)), str(int(mas[0]/(30*9*60)*toplam))+" TL")
 
