@@ -113,9 +113,9 @@ while True:
         print(dongu, " loop")
         if dongu > 200:
             print("elmabahçe")
-            subprocess.Popen("python3 masa1.py", shell=True)
+            subprocess.Popen("venv/bin/python3 masa1.py", shell=True)
             ttim.sleep(10)
-            subprocess.Popen("python3 kasa1.py", shell=True)
+            subprocess.Popen("venv/bin/python3 kasa1.py", shell=True)
             ttim.sleep(10)
             dongu=0
 

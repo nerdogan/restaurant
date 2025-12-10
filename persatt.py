@@ -1,12 +1,13 @@
 # -*- coding:utf8 -*-
 from zk import ZK, const
-
+from datetime import datetime
 import MySQLdb as mdb
 from socket import *
-
-tgtIP = gethostbyname('78.188.173.248')
+print("----------")
+#tgtIP = gethostbyname('nen.duckdns.org')
+tgtIP="192.168.2.251"
 print(tgtIP)
-conmy = mdb.connect(tgtIP, "nen","654152", "bishop",charset='utf8',port=30000)
+conmy = mdb.connect(tgtIP, "nen","654152", "bishop",charset='utf8',port=3306)
 curmy = conmy.cursor()
 curmy.execute("SET NAMES UTF8")
 curmy.execute("SET character_set_client=utf8")
@@ -33,7 +34,8 @@ if ( attendance ):
         conmy.commit()
 
     #print("Clear Attendance:", conn.clear_attendance())
-
+#newtime = datetime.today()
+#conn.set_time(newtime)
 print("Cihaz saati:", conn.get_time())
 
 print("Cihaz Devrede", conn.enable_device())

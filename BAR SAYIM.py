@@ -2,7 +2,7 @@
 
 import fdb
 import MySQLdb
-import pymssql
+#import pymssql
 from socket import *
 from reportlab.graphics.barcode import code39, code128, code93
 from reportlab.graphics.barcode import eanbc, qr, usps
@@ -14,13 +14,13 @@ from reportlab.graphics import renderPDF
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
 
-pdfmetrics.registerFont(TTFont('tahoma', 'tahoma.ttf'))
+#pdfmetrics.registerFont(TTFont('tahoma', 'tahoma.ttf'))
 
 
 class Mmdb():
     def __init__(self):
         tgtIP = gethostbyname('nen.duckdns.org')
-        self.conn = MySQLdb.connect(tgtIP, 'nen', '654152', 'test', charset='utf8', port=30000);
+        self.conn = MySQLdb.connect('localhost', 'nen', '654152', 'test', charset='utf8', port=30000);
 
         # create a cursor
         self.cur = self.conn.cursor()
@@ -39,7 +39,9 @@ class Mmdb():
 
 Mmdb1=Mmdb()
 sonuc= Mmdb1.cek("hammadde")
-print sonuc[0][0], sonuc[0][1]
+print(sonuc[0][0], sonuc[0][1])
+
+
 def createBarCodes():
     """
     Create barcode examples and embed in a PDF
@@ -103,7 +105,7 @@ def createBarCodes():
 
         b=code[2]
         orhan=orhan+1
-        print code[0],code[1],orhan
+        print(code[0], code[1], orhan)
         barcode93 = code93.Standard93(code[0])
         barcode93.drawOn(c, x, y+10)
         c.drawString(x+90,y+15,str(code[0])+" "+ code[1])

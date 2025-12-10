@@ -16,7 +16,7 @@ token=nenraconfig._GetOption2('token')
 
 tgtIP = gethostbyname('nen.duckdns.org')
 print(tgtIP)
-conmy = mdb.connect("192.168.2.251", "nen","654152", "bishop",charset='utf8',port=3306)
+conmy = mdb.connect(tgtIP, "nen","654152", "bishop",charset='utf8',port=30000)
 curmy = conmy.cursor()
 curmy.execute("SET NAMES UTF8")
 curmy.execute("SET character_set_client=utf8")
@@ -24,8 +24,8 @@ gunliste=[]
 
 ayliste=[]
 
-tarihh="2024-08-01"
-tarihson="2024-12-11"
+tarihh="2018-05-22"
+tarihson="2019-11-09"
 dtilk= datetime.strptime(tarihh, '%Y-%m-%d').date()
 dtson= datetime.strptime(tarihson, '%Y-%m-%d').date()
 fark=(dtson-dtilk).days+1
@@ -58,7 +58,7 @@ def last_day_of_month( any_day):
     next_month = any_day.replace(day=28) + timedelta(days=4)  # this will never fail
     return (next_month - timedelta(days=next_month.day)).day
 
-sql=("select b.adsoyad,tarih,saat,enrolgc from personelgc a  inner join personel b ON a.enrolgc=b.kod where tarih between %s and %s AND b.bolum='S' order by enrolgc,tarih,saat")
+sql=("select b.adsoyad,tarih,saat,enrolgc from personelgc a  inner join personel b ON a.enrolgc=b.kod where tarih between %s and %s AND b.bolum='S' and a.enrolgc=98 order by enrolgc,tarih,saat")
 bul =curmy.execute(sql,[tarihh,tarihson])
 bul=curmy.fetchall()
 print (bul)
@@ -189,7 +189,7 @@ cliste.append(ayliste)
 
 # listeleme ve pdf oluşturma
 
-c = canvas.Canvas("a.TAM " + str(tarihh) +' '+ str(tarihson)+".pdf")
+c = canvas.Canvas("98.TAM " + str(tarihh) +' '+ str(tarihson)+".pdf")
 
 pdfmetrics.registerFont(TTFont('Verdana', 'Verdana.ttf'))
 print(c.getAvailableFonts())
@@ -199,7 +199,7 @@ item = u"BISHOP PERSONEL DEVAM LİSTESİ     "
 c.drawString(55, 815, item)
 c.setFont("Verdana", 8)
 
-item = " AD SOYAD                   TARİH            GİRİŞ          ÇIKIŞ           FARK            "
+item = " AD SOYAD                   TARİH            GİRİŞ          ÇIKIŞ                           "
 c.drawString(10, 800, item)
 aa = 0
 bb = 0
@@ -215,7 +215,7 @@ for ayliste in cliste:
         c.drawString(110, 800 - (15 * (bb + 1)), str(gunliste[0]))
         c.drawString(165, 800 - (15 * (bb + 1)), str(gunliste[1]))
         c.drawString(220, 800 - (15 * (bb + 1)), str(gunliste[2]))
-        c.drawString(275, 800 - (15 * (bb + 1)), str(gunliste[3]))
+        #c.drawString(275, 800 - (15 * (bb + 1)), str(gunliste[3]))
         bb = bb + 1
 
         if (str(gunliste[3])).isalpha():

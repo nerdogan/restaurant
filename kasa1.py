@@ -90,7 +90,7 @@ while True:
     dt=datetime.now()-timedelta(hours=5)
     interval_type = 'days'
 
-    if interval_num==2:
+    if interval_num==24:
         break
     one_day = timedelta(**{interval_type: interval_num})
     dt2=dt-one_day
