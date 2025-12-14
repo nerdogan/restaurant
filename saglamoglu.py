@@ -174,9 +174,10 @@ def login(driver):
             myddb.conn.commit()
         #  requests.post(url='https://api.telegram.org/bot{0}/sendMessage'.format(token),                              data={'chat_id': 839088426, 'text': str(siparis)}).json()
 
-        time.sleep(20)
-        driver.refresh()
         time.sleep(10)
+        driver.execute_script("window.location.reload(true);")
+        # driver.refresh()
+        time.sleep(40)
 
 @atexit.register
 def cikis():
