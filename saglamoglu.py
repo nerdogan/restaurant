@@ -8,16 +8,15 @@ chrome_options = Options()
 chrome_options.add_argument("user-data-dir=saglam")
 chrome_options.add_argument("--headless=new")
 chrome_options.add_argument("--no-sandbox")
-chrome_options.add_argument("--disable-dev-shm-usage")
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--disable-extensions")
-chrome_options.add_argument("--disable-popup-blocking")
 chrome_options.add_argument("--window-size=1920,1080")
 import time
 import re
 import datetime
 import atexit
 import subprocess
+import requests
 import nenraconfig
 from modulemdb import Myddb as mdb
 
@@ -175,17 +174,16 @@ def login(driver):
         #  requests.post(url='https://api.telegram.org/bot{0}/sendMessage'.format(token),                              data={'chat_id': 839088426, 'text': str(siparis)}).json()
 
         time.sleep(10)
-        driver.execute_script("window.location.reload(true);")
-        # driver.refresh()
-        time.sleep(40)
+        #driver.execute_script("window.location.reload(true);")
+        driver.refresh()
+        time.sleep(60)
 
 @atexit.register
 def cikis():
     print("sağlamoğlu çıkıyor")
     curmy.close()
    # subprocess.Popen('python3 deneme.py', shell=True)
-
-  #  requests.post(url='https://api.telegram.org/bot{0}/sendMessage'.format(token),  data={'chat_id': 839088426, 'text': "getiryemek kapandı"}).json()
+    requests.post(url='https://api.telegram.org/bot{0}/sendMessage'.format(token),  data={'chat_id': 839088426, 'text': "saglamoglu kapandı"}).json()
     # celal 972595010
 
     pass
