@@ -171,7 +171,7 @@ def login(driver):
             sql1 = "insert into kur (parite,fiyat) values (%s,%s)"
             curmy.execute(sql1, (siparis["altın"], kontrol(siparis["USD_KG"])))
             myddb.conn.commit()
-        #  requests.post(url='https://api.telegram.org/bot{0}/sendMessage'.format(token),                              data={'chat_id': 839088426, 'text': str(siparis)}).json()
+        requests.post(url='https://api.telegram.org/bot{0}/sendMessage'.format(token), data={'chat_id': 839088426, 'text': str(siparis)}).json()
 
         time.sleep(10)
         #driver.execute_script("window.location.reload(true);")
